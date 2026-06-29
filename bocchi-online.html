@@ -1742,11 +1742,6 @@
                 encodeURIComponent(
                   document.getElementById("inputName" + j).value,
                 ) +
-                // document
-                //   .getElementById("inputName" + j)
-                //   .value.replaceAll("&", "^and^")
-                //   .replaceAll("%", "^percent^")
-                //   .replaceAll("#", "^hash^") +
                 "&";
             }
           }
@@ -1782,9 +1777,9 @@
         count = 0;
         last = count - 1;
 
-        // if (urlParams.has("apikey") == true) {
-        //   ytApiKey = urlParams.get("apikey");
-        // }
+        if (urlParams.has("apikey") == true) {
+          ytApiKey = urlParams.get("apikey");
+        }
 
         console.log("ytApiKey" + ytApiKey);
 
