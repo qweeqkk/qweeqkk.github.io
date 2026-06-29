@@ -1723,7 +1723,13 @@
               "=" +
               document.getElementById("videoIDInput" + j).value +
               "&";
+          }
+        }
 
+        for (let i = 0; i < count; i++) {
+          j = i;
+
+          if (document.getElementById("videoIDInput" + j).value != "") {
             if (
               document.getElementById("inputName" + j).value != "..." &&
               document.getElementById("inputName" + j).value != "<checking>" &&
@@ -1776,9 +1782,9 @@
         count = 0;
         last = count - 1;
 
-        if (urlParams.has("apikey") == true) {
-          ytApiKey = urlParams.get("apikey");
-        }
+        // if (urlParams.has("apikey") == true) {
+        //   ytApiKey = urlParams.get("apikey");
+        // }
 
         console.log("ytApiKey" + ytApiKey);
 
