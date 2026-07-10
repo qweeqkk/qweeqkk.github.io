@@ -1,453 +1,448 @@
 <!doctype html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Bocchi▶</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link
-      id="font-awesome-cdn"
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    />
-    <link rel="icon" href="ico.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --fontheight: 18px;
-        --lineheight: 30px;
-        --highlight: rgb(238, 226, 192);
-        --highlight2: rgb(143, 137, 120);
-        --time: 0.13s linear;
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Bocchi▶</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<link
+			id="font-awesome-cdn"
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+			integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+			crossorigin="anonymous"
+		/>
+		<link rel="icon" href="ico.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--fontheight: 18px;
+				--lineheight: 30px;
+				--highlight: rgb(238, 226, 192);
+				--highlight2: rgb(143, 137, 120);
+				--time: 0.13s linear;
 
-        --menuwidth: 750px;
-      }
+				--menuwidth: 750px;
+			}
 
-      body {
-        background-color: #181a24;
-        color: rgb(175 175 175);
-        font-size: var(--fontheight);
-        padding: 0;
-        margin: 0;
-        font-family: "UD Digi Kyokasho NK-R", "M PLUS Rounded 1c", sans-serif;
-        overflow: hidden;
-      }
+			body {
+				background-color: #181a24;
+				color: rgb(175 175 175);
+				font-size: var(--fontheight);
+				padding: 0;
+				margin: 0;
+				font-family: "UD Digi Kyokasho NK-R", "M PLUS Rounded 1c", sans-serif;
+				overflow: hidden;
+			}
 
-      .openmenu {
-        clip-path: inset(0 0px 0 0);
-      }
-      .closemenu {
-        clip-path: inset(0 var(--menuwidth) 0 0);
-      }
-      .hide {
-        display: none !important;
-      }
-      .hidevis {
-        opacity: 0 !important;
-      }
+			.openmenu {
+				clip-path: inset(0 0px 0 0);
+			}
+			.closemenu {
+				clip-path: inset(0 var(--menuwidth) 0 0);
+			}
+			.hide {
+				display: none !important;
+			}
+			.hidevis {
+				opacity: 0 !important;
+			}
 
-      #inputx {
-        background: rgb(23 16 35 / 83%);
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        overflow: hidden;
-        z-index: 8;
+			#inputx {
+				background: rgb(23 16 35 / 83%);
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				overflow: hidden;
+				z-index: 8;
 
-        width: var(--menuwidth);
-        transition: 0.5s;
-      }
+				width: var(--menuwidth);
+				transition: 0.5s;
+			}
 
-      #inputxinside {
-        margin: 100px 0 0 28px;
+			#inputxinside {
+				margin: 100px 0 0 28px;
 
-        position: absolute;
-        height: 70%;
-        width: 95%;
-        top: 0;
-        left: 0;
+				position: absolute;
+				height: 70%;
+				width: 95%;
+				top: 0;
+				left: 0;
 
-        overflow-y: scroll;
-        overflow-x: visible;
-      }
+				overflow-y: scroll;
+				overflow-x: visible;
+			}
 
-      .videoPreview {
-        width: 500px;
-        height: 100px;
-      }
+			.videoPreview {
+				width: 500px;
+				height: 100px;
+			}
 
-      .inputNumber {
-        width: 40px;
-        display: inline-block;
-        text-align: right;
-        bottom: -2px;
-        position: relative;
-        direction: rtl;
-      }
-      .inputName {
-        text-align: left;
-        width: 273px;
-        font-size: small;
-        /* overflow-y: hidden;
+			.inputNumber {
+				width: 40px;
+				display: inline-block;
+				text-align: right;
+				bottom: -2px;
+				position: relative;
+				direction: rtl;
+			}
+			.inputName {
+				text-align: left;
+				width: 273px;
+				font-size: small;
+				/* overflow-y: hidden;
         overflow-x: scroll; */
-        display: inline-block;
-        position: relative;
-        /* margin-right: 5px; */
-      }
-      /* width */
-      ::-webkit-scrollbar {
-        width: 15px;
-        height: 3px;
-      }
+				display: inline-block;
+				position: relative;
+				/* margin-right: 5px; */
+			}
+			/* width */
+			::-webkit-scrollbar {
+				width: 15px;
+				height: 3px;
+			}
 
-      /* Track */
-      ::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px grey;
-        border-radius: 10px;
-      }
+			/* Track */
+			::-webkit-scrollbar-track {
+				box-shadow: inset 0 0 5px grey;
+				border-radius: 10px;
+			}
 
-      /* Handle */
-      ::-webkit-scrollbar-thumb {
-        background: white;
-        border-radius: 10px;
-      }
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+				background: white;
+				border-radius: 10px;
+			}
 
-      .durationText {
-        width: 44px;
-        overflow: hidden;
-        font-size: 10px;
-      }
-      .inputNameBlock {
-        display: inline-block;
-        width: 270px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        height: 26px;
-      }
+			.durationText {
+				width: 44px;
+				overflow: hidden;
+				font-size: 10px;
+			}
+			.inputNameBlock {
+				display: inline-block;
+				width: 270px;
+				overflow: hidden;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				height: 26px;
+			}
 
-      #checkbutton {
-        margin-right: 100px;
-      }
+			#checkbutton {
+				margin-right: 100px;
+			}
 
-      .ib {
-        display: inline-block;
-        text-align: right;
-        /* margin-left: 10px; */
-      }
-      .ib2 {
-        text-align: right;
-        width: 600px;
-        position: absolute;
-        height: 150px;
-        left: 30px;
-        bottom: 0;
-      }
-      .leftbuttons {
-        text-align: left;
-        display: inline-block;
-        position: absolute;
-        width: calc(100% - 60px);
-        left: 30px;
-        top: 50px;
-      }
-      .ofc {
-        height: 30px;
-        width: 650px;
-        padding: 0 15px 0 5px;
-        border-radius: 8px;
-        white-space: nowrap;
-        overflow: hidden;
-        position: relative;
-        text-align: left;
-      }
-      .small {
-        font-size: small;
-      }
+			.ib {
+				display: inline-block;
+				text-align: right;
+				/* margin-left: 10px; */
+			}
+			.ib2 {
+				text-align: right;
+				width: 600px;
+				position: absolute;
+				height: 150px;
+				left: 30px;
+				bottom: 0;
+			}
+			.leftbuttons {
+				text-align: left;
+				display: inline-block;
+				position: absolute;
+				width: calc(100% - 60px);
+				left: 30px;
+				top: 50px;
+			}
+			.ofc {
+				height: 30px;
+				width: 650px;
+				padding: 0 15px 0 5px;
+				border-radius: 8px;
+				white-space: nowrap;
+				overflow: hidden;
+				position: relative;
+				text-align: left;
+			}
+			.small {
+				font-size: small;
+			}
 
-      #player {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .videoIDInput {
-        width: 50px;
-      }
-      .ibutton {
-        height: 24px;
-        width: 36px;
-      }
-      .ibutton2 {
-        height: 32px;
-        width: 46px;
-        font-size: 18px;
-        line-height: 18px;
-      }
-      .buttons {
-        top: 0;
-        bottom: 0;
-        right: 15px;
-        position: absolute;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-      }
+			#player {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+			.videoIDInput {
+				width: 50px;
+			}
+			.ibutton {
+				height: 24px;
+				width: 36px;
+			}
+			.ibutton2 {
+				height: 32px;
+				width: 46px;
+				font-size: 18px;
+				line-height: 18px;
+			}
+			.buttons {
+				top: 0;
+				bottom: 0;
+				right: 15px;
+				position: absolute;
+				display: flex;
+				align-items: center;
+				gap: 5px;
+			}
 
-      button {
-        color: white;
-        background-color: #02013f91;
-        border-radius: 9px;
-        border: 1px solid #ffffff;
-        cursor: pointer;
-        font-size: 14px;
-        text-decoration: none;
-      }
+			button {
+				color: white;
+				background-color: #02013f91;
+				border-radius: 9px;
+				border: 1px solid #ffffff;
+				cursor: pointer;
+				font-size: 14px;
+				text-decoration: none;
+			}
 
-      input {
-        background: none;
-        color: inherit;
-        /* background-color: #8f8fa991;
+			input {
+				background: none;
+				color: inherit;
+				/* background-color: #8f8fa991;
         border: white solid 1px; */
-        background-color: #8f8fa91a;
-        border: #ffffff4a solid 1px;
-        border-radius: 8px;
-        padding: 3px 3px 3px 6px;
-      }
+				background-color: #8f8fa91a;
+				border: #ffffff4a solid 1px;
+				border-radius: 8px;
+				padding: 3px 3px 3px 6px;
+			}
 
-      #interval {
-        width: 40px;
-      }
+			#interval {
+				width: 40px;
+			}
 
-      #settext {
-        width: 60px;
-      }
+			#settext {
+				width: 60px;
+			}
 
-      #report {
-        white-space: nowrap;
-      }
+			#report {
+				white-space: nowrap;
+			}
 
-      .mirrorx {
-        transform: scaleX(-1);
-      }
+			.mirrorx {
+				transform: scaleX(-1);
+			}
 
-      .mrb {
-        margin-right: 10px;
-        display: inline-block;
-        position: relative;
-      }
+			.mrb {
+				margin-right: 10px;
+				display: inline-block;
+				position: relative;
+			}
 
-      .nowplaying {
-        background-color: #3bcb3b7d;
-        color: white;
-        outline: #88ff88 dashed 2px;
-      }
-      .deleteconfirm,
-      .deleteconfirm:hover {
-        background-color: #cb3b3ba1;
-      }
+			.nowplaying {
+				background-color: #3bcb3b7d;
+				color: white;
+				outline: #88ff88 dashed 2px;
+			}
+			.deleteconfirm,
+			.deleteconfirm:hover {
+				background-color: #cb3b3ba1;
+			}
 
-      .floatingcontrols {
-        pointer-events: none;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        z-index: 10;
-      }
-      .nbutton {
-        pointer-events: all;
-        position: absolute;
-        top: 34vh;
-        opacity: 0;
-        height: 26vh;
-        width: 250px;
-        border-radius: 250px;
-        font-size: 100px;
-        border: none;
-        background-color: #ffffff00;
-      }
-      .nbutton:hover {
-        opacity: 1;
-        background-color: #ffffff00;
-      }
-      #nextbutton {
-        right: 3vw;
-      }
-      #prevbutton {
-        left: 3vw;
-      }
+			.floatingcontrols {
+				pointer-events: none;
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				z-index: 10;
+			}
+			.nbutton {
+				pointer-events: all;
+				position: absolute;
+				top: 34vh;
+				opacity: 0;
+				height: 26vh;
+				width: 250px;
+				border-radius: 250px;
+				font-size: 100px;
+				border: none;
+				background-color: #ffffff00;
+			}
+			.nbutton:hover {
+				opacity: 1;
+				background-color: #ffffff00;
+			}
+			#nextbutton {
+				right: 3vw;
+			}
+			#prevbutton {
+				left: 3vw;
+			}
 
-      .changeconfirm,
-      .changeconfirm:hover {
-        opacity: 1;
-      }
-      .bvis {
-        background-color: #3b45cba1;
-        border: 4px solid #ffffff;
-        width: 150px;
-        height: 150px;
-        border-radius: 150px;
-        line-height: 150px;
-      }
-      #menubutton {
-        pointer-events: visible;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 33%;
-        width: 20px;
-        border: none;
-        background-color: #3e328b80;
-        opacity: 0.3;
-        transition: 1s;
-      }
-      #menulockb {
-        pointer-events: visible;
-        position: absolute;
-        bottom: 33%;
-        left: 0;
-        width: 20px;
-        opacity: 0.3;
-        font-size: 8px;
-        height: 16px;
-      }
-      #inputs {
-        margin-top: 10px;
-      }
+			.changeconfirm,
+			.changeconfirm:hover {
+				opacity: 1;
+			}
+			.bvis {
+				background-color: #3b45cba1;
+				border: 4px solid #ffffff;
+				width: 150px;
+				height: 150px;
+				border-radius: 150px;
+				line-height: 150px;
+			}
+			#menubutton {
+				pointer-events: visible;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				height: 33%;
+				width: 20px;
+				border: none;
+				background-color: #3e328b80;
+				opacity: 0.3;
+				transition: 1s;
+			}
+			#menulockb {
+				pointer-events: visible;
+				position: absolute;
+				bottom: 33%;
+				left: 0;
+				width: 20px;
+				opacity: 0.3;
+				font-size: 8px;
+				height: 16px;
+			}
+			#inputs {
+				margin-top: 10px;
+			}
 
-      .greenhover:hover,
-      .buttonconfirm,
-      #menubutton:hover,
-      button:hover {
-        background-color: #42e9b191;
-      }
+			.greenhover:hover,
+			.buttonconfirm,
+			#menubutton:hover,
+			button:hover {
+				background-color: #42e9b191;
+			}
 
-      #pinbutton {
-        position: absolute;
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        border-radius: 50px;
-        font-size: 24px;
-        right: 75px;
-        top: 32px;
-      }
+			#pinbutton {
+				position: absolute;
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				border-radius: 50px;
+				font-size: 24px;
+				right: 75px;
+				top: 32px;
+			}
 
-      #playlisttitlecontainer {
-        position: absolute;
-        top: 50px;
-        left: 40px;
-      }
+			#playlisttitlecontainer {
+				position: absolute;
+				top: 50px;
+				left: 40px;
+			}
 
-      #playlisttitle {
-        width: calc(var(--menuwidth) - 260px);
-        color: white;
-        background-color: #8f8fa954;
-        border: #ffffff99 solid 1px;
-        font-size: 20px;
-      }
+			#playlisttitle {
+				width: calc(var(--menuwidth) - 260px);
+				color: white;
+				background-color: #8f8fa954;
+				border: #ffffff99 solid 1px;
+				font-size: 20px;
+			}
 
-      #setcountdown {
-        width: 36px;
-      }
+			#setcountdown {
+				width: 36px;
+			}
 
-      #setcountdowncontainer {
-        display: inline-flex;
-        align-items: center;
-      }
+			#setcountdowncontainer {
+				display: inline-flex;
+				align-items: center;
+			}
 
-      .ibutton3 {
-        height: 24px;
-        width: 32px;
-        font-size: 12px;
-        line-height: 12px;
-      }      
+			.ibutton3 {
+				height: 24px;
+				width: 32px;
+				font-size: 12px;
+				line-height: 12px;
+			}
 
-      @keyframes fade {
-        0% {
-        opacity: 1;
-        }
-        100% {
-        opacity: 0;
-        }
-      }
+			@keyframes fade {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
 
-      .blockbox{
-        background-color: black;
-        position: absolute;
-        pointer-events: all;
-        bottom: 12vh;
-        top: 65px;
-        width: 49vw;
-        z-index: 5;
-        opacity: 1;
-        animation: 
-            fade 2.0s linear 0.3s forwards;
-      }
-      #blockbox1{
-        left: 0;
-      }
-      #blockbox2{
-        right: 0;
-      }
-    </style>
-  </head>
+			.blockbox {
+				background-color: black;
+				position: absolute;
+				pointer-events: all;
+				bottom: 12vh;
+				top: 65px;
+				width: 49vw;
+				z-index: 5;
+				opacity: 1;
+				animation: fade 2s linear 0.3s forwards;
+			}
+			#blockbox1 {
+				left: 0;
+			}
+			#blockbox2 {
+				right: 0;
+			}
+		</style>
+	</head>
 
-  <body>
-    <div class="floatingcontrols">
-      <button onclick="ChangeCheck()" id="nextbutton" class="nbutton">
-        <i class="fa fa-chevron-circle-right bvis" aria-hidden="true"></i>
-      </button>
-      <button onclick="ChangeCheck(false)" id="prevbutton" class="nbutton">
-        <i class="fa fa-chevron-circle-left bvis" aria-hidden="true"></i>
-      </button>
+	<body>
+		<div class="floatingcontrols">
+			<button onclick="ChangeCheck()" id="nextbutton" class="nbutton">
+				<i class="fa fa-chevron-circle-right bvis" aria-hidden="true"></i>
+			</button>
+			<button onclick="ChangeCheck(false)" id="prevbutton" class="nbutton">
+				<i class="fa fa-chevron-circle-left bvis" aria-hidden="true"></i>
+			</button>
 
-      <button onclick="MenuLock()" class="greenhover" id="menulockb">
-        <i class="fa fa-unlock" id="unlockedsym" aria-hidden="true"></i>
-        <i class="fa fa-lock hide" id="lockedsym" aria-hidden="true"></i>
-      </button>
+			<button onclick="MenuLock()" class="greenhover" id="menulockb">
+				<i class="fa fa-unlock" id="unlockedsym" aria-hidden="true"></i>
+				<i class="fa fa-lock hide" id="lockedsym" aria-hidden="true"></i>
+			</button>
 
-      <button
-        onmouseover="MenuOpen(true, true)"
-        onclick="MenuOpenC()"
-        id="menubutton"
-      ></button>
-    </div>
+			<button onmouseover="MenuOpen(true, true)" onclick="MenuOpenC()" id="menubutton"></button>
+		</div>
 
-    <div id="blockbox1" class="blockbox"></div>
-    <div id="blockbox2" class="blockbox"></div>
+		<div id="blockbox1" class="blockbox"></div>
+		<div id="blockbox2" class="blockbox"></div>
 
-    <div id="videoElement">
-      <!-- <iframe id="player" referrerpolicy="strict-origin-when-cross-origin" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="日々、おいしいがいっぱい" width="100%" height="100%" src="https://www.youtube.com/embed/KzINIG0OmM4?enablejsapi=1&amp;origin=https%3A%2F%2Fanime-offli.ne&amp;widgetid=1&amp;forigin=https%3A%2F%2Fanime-offli.ne%2Fbocchi.html&amp;aoriginsup=1&amp;vf=6"></iframe> -->
-      <iframe
-        id="player"
-        referrerpolicy="strict-origin-when-cross-origin"
-        frameborder="0"
-        allowfullscreen=""
-        allow="
-          accelerometer;
-          autoplay;
-          clipboard-write;
-          encrypted-media;
-          gyroscope;
-          picture-in-picture;
-          web-share;
-        "
-        title="iframe player"
-        width="100%"
-        height="100%"
-        src="https://www.youtube.com/embed/KzINIG0OmM4?enablejsapi=1&app=desktop "
-      ></iframe>
-      <!-- <iframe
+		<div id="videoElement">
+			<!-- <iframe id="player" referrerpolicy="strict-origin-when-cross-origin" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="日々、おいしいがいっぱい" width="100%" height="100%" src="https://www.youtube.com/embed/KzINIG0OmM4?enablejsapi=1&amp;origin=https%3A%2F%2Fanime-offli.ne&amp;widgetid=1&amp;forigin=https%3A%2F%2Fanime-offli.ne%2Fbocchi.html&amp;aoriginsup=1&amp;vf=6"></iframe> -->
+			<iframe
+				id="player"
+				referrerpolicy="strict-origin-when-cross-origin"
+				frameborder="0"
+				allowfullscreen=""
+				allow="
+					accelerometer;
+					autoplay;
+					clipboard-write;
+					encrypted-media;
+					gyroscope;
+					picture-in-picture;
+					web-share;
+				"
+				title="iframe player"
+				width="100%"
+				height="100%"
+				src="https://www.youtube.com/embed/KzINIG0OmM4?enablejsapi=1&app=desktop "
+			></iframe>
+			<!-- <iframe
         id="checkplayer"
         referrerpolicy="strict-origin-when-cross-origin"
         frameborder="0"
@@ -458,1421 +453,1379 @@
         height="50%"
         src="https://www.youtube.com/embed/KzINIG0OmM4?enablejsapi=1"
       ></iframe> -->
-    </div>
+		</div>
 
-    <br />
+		<br />
 
-    <div id="inputx" class="closemenu">
-      <div id="playlisttitlecontainer">
-        <input type="text" autocomplete="off" id="playlisttitle" />
-      </div>
+		<div id="inputx" class="closemenu">
+			<div id="playlisttitlecontainer">
+				<input type="text" autocomplete="off" id="playlisttitle" />
+			</div>
 
-      <button title="Pin menu open" class="" id="pinbutton" onclick="Pin()">
-        <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-      </button>
+			<button title="Pin menu open" class="" id="pinbutton" onclick="Pin()">
+				<i class="fa fa-thumb-tack" aria-hidden="true"></i>
+			</button>
 
-      <div class="ib ib2">
-        <div id="checkbutton" class="ib">
-          <span id="report" class="small"></span>
-          <button
-            title="Check all videos"
-            class="ibutton"
-            onclick="RestartCheck()"
-          >
-            <i class="fa fa-repeat" aria-hidden="true"></i>
-          </button>
-        </div>
+			<div class="ib ib2">
+				<div id="checkbutton" class="ib">
+					<span id="report" class="small"></span>
+					<button title="Check all videos" class="ibutton" onclick="RestartCheck()">
+						<i class="fa fa-repeat" aria-hidden="true"></i>
+					</button>
+				</div>
 
-        <div class="leftbuttons">
-          <button
-            title="Clear playlist: Two clicks for watched, again for all"
-            class="ibutton2 mrb"
-            id="clearb"
-            onclick="Clear()"
-          >
-            <i class="fa fa-ban" aria-hidden="true"></i>
-          </button>
-          <button
-            title="Restore watch time if video restarted"
-            class="ibutton2 mrb"
-            id="clearb"
-            onclick="LoadTime()"
-          >
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-          </button>
-          <button
-            title="Save playlist"
-            class="ibutton2 mrb"
-            id="saveb"
-            onclick="Save()"
-          >
-            <i class="fa fa-floppy-o" aria-hidden="true"></i>
-          </button>
+				<div class="leftbuttons">
+					<button
+						title="Clear playlist: Two clicks for watched, again for all"
+						class="ibutton2 mrb"
+						id="clearb"
+						onclick="Clear()"
+					>
+						<i class="fa fa-ban" aria-hidden="true"></i>
+					</button>
+					<button
+						title="Restore watch time if video restarted"
+						class="ibutton2 mrb"
+						id="clearb"
+						onclick="LoadTime()"
+					>
+						<i class="fa fa-clock-o" aria-hidden="true"></i>
+					</button>
+					<button title="Save playlist" class="ibutton2 mrb" id="saveb" onclick="Save()">
+						<i class="fa fa-floppy-o" aria-hidden="true"></i>
+					</button>
 
-          <!-- <span class="small mrb">Status: <span id="current">0</span></span> -->
+					<!-- <span class="small mrb">Status: <span id="current">0</span></span> -->
 
-          <!-- <div class="small mrb">
+					<!-- <div class="small mrb">
             Interval:
             <input type="text" autocomplete="off" id="interval" value="" />
           </div> -->
 
-          <div class="small mrb" id="setcountdowncontainer">
-            End:
-            <input type="text" autocomplete="off" id="setcountdown" value="" />
-            <button
-              title="set text"
-              class="ibutton3 mrb"
-              id="setcountdownb"
-              onclick="SetCountdown()"
-            >
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
-            </button>
-            <div class="small mrb" id="countdown">countdown</div>
-            <div class="small mrb" id="nextSegment">segmentEnd</div>
-          </div>
-
-          <div class="small mrb">
-            Show:
-            <input type="text" autocomplete="off" id="settext" value="" />
-            <button
-              title="set text"
-              class="ibutton2 mrb"
-              id="settextb"
-              onclick="SetText()"
-            >
-              <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </button>
-          </div>
-          <div style="margin-top: 10px" class="small" id="settextt">
-            Nothing Here
-          </div>
-        </div>
-
-        <button
-          title="Mirror"
-          class="ibutton2 mrb"
-          id="mirrorbutton"
-          onclick="MirrorToggle()"
-        >
-          <i class="fa fa-exchange" aria-hidden="true"></i>
-        </button>
-
-        <button
-          title="Loop"
-          class="ibutton2 mrb"
-          id="loopbutton"
-          onclick="LoopToggle()"
-        >
-          <i class="fa fa-refresh" aria-hidden="true"></i>
-        </button>
-
-        <button
-          title="Pause after video"
-          class="ibutton2 mrb"
-          id="pausebutton"
-          onclick="PauseToggle()"
-        >
-          <i class="fa fa-pause-circle" aria-hidden="true"></i>
-        </button>
-
-        <button
-          title="Add playlist slot"
-          class="ibutton2 mrb"
-          id="add"
-          onclick="Add()"
-        >
-          <i class="fa fa-plus" aria-hidden="true"></i>
-        </button>
-      </div>
-
-      <div id="inputxinside">
-        <div>
-          Now Playing: <span id="nowplayingno" class="small"></span> ||
-          <span id="nowplaying"></span>
-        </div>
-
-        <br />
-
-        <div id="inputs"></div>
-      </div>
-    </div>
-
-    <script>
-      var ytApiKey = "";
-
-      defaultID = "KzINIG0OmM4";
-      defaultIDs = ["KzINIG0OmM4", "KzINIG0OmM4", "KzINIG0OmM4"];
-
-      function RandomID() {
-        defaultID = defaultIDs[Math.floor(Math.random() * defaultIDs.length)];
-      }
-
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement("script");
-
-      tag.src = "https://www.youtube.com/iframe_api?app=desktop";
-      var firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      // var checkplayer;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player("player", {
-          events: {
-            onReady: onPlayerReady,
-            onStateChange: onPlayerStateChange,
-          },
-        });
-        // checkplayer = new YT.Player("checkplayer", {});
-
-        // RandomID();
-        // player.loadVideoById(defaultID, 0);
-        // player = new YT.Player("player", {
-        //   height: "100%",
-        //   width: "100%",
-        //   videoId: defaultID,
-        //   playerVars: {},
-        //   events: {
-        //     onReady: onPlayerReady,
-        //     onStateChange: onPlayerStateChange,
-        //   },
-        // });
-        // checkplayer = new YT.Player("checkplayer", {
-        //   height: "50%",
-        //   width: "50%",
-        //   videoId: defaultID,
-        //   playerVars: {},
-        //   events: {},
-        // });
-      }
-
-      $("#player").attr("referrerpolicy", "strict-origin-when-cross-origin");
-
-      var playerready = false;
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        // StartVideo();
-        // event.target.playVideo();
-        playerready = true;
-      }
-
-      var saveready = false;
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      function onPlayerStateChange(event) {
-        document.querySelector("#nowplaying").textContent =
-          player.getVideoData().title;
-
-        SetTitle();
-
-        document.querySelector("#nowplayingno").textContent =
-          "No. " + (currentVideo + 1);
-
-        // document.querySelector("#current").textContent = event.data;
-
-        if (event.data == 0) {
-          Next();
-        }
-        if (event.data == 1) {
-          dontplay = false;
-        }
-        if (event.data == 2 && saveready) {
-          Save(true);
-        }
-      }
-
-      currentVideo = 0;
-
-      function SetTitle() {
-        doctitle = "B▶ ";
-
-        playlisttitle = document.getElementById("playlisttitle").value;
-        if (playlisttitle != "") {
-          doctitle = "";
-          // doctitle += " (" + (currentVideo + 1) + "/" + count + ")";
-          doctitle +=
-            "B【" +
-            playlisttitle +
-            "】 ▶  (" +
-            (currentVideo + 1) +
-            "/" +
-            count +
-            ") ";
-          // doctitle += " ▶ ";
-        }
-
-        // videoID = document.getElementById("videoIDInput" + currentVideo).value;
-        // videoTitle = "";
-        // console.log(videoID);
-        // $.get(
-        //   "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" +
-        //     videoID +
-        //     "&key=" +
-        //     ytApiKey,
-        //   function (data) {
-        //     // alert(data.items[0].snippet.title);
-        //     videoTitle = data.items[0].snippet.title;
-        //     doctitle += videoTitle;
-        //   }
-        // );
-        // console.log(videoTitle);
-
-        if (player.getVideoData()) {
-          doctitle += player.getVideoData().title;
-        }
-
-        document.title = doctitle;
-      }
-
-      function StartVideo(vid = currentVideo, save = true, starttime = 0) {
-        CheckVideoLinks();
-
-        if (
-          document.getElementById("inputName" + vid).value == "..." ||
-          document.getElementById("inputName" + vid).value == "<checking>" ||
-          document.getElementById("inputName" + vid).value == ""
-        ) {
-          ReCheck(vid);
-        }
-
-        $(".ibutton").blur();
-
-        if (vid <= last) {
-          videoID = document.getElementById("videoIDInput" + vid).value;
-          // document.querySelector("#current").textContent = vid;
-
-          $("#inputBlock" + currentVideo).removeClass("nowplaying");
-          currentVideo = vid;
-          $("#inputBlock" + currentVideo).addClass("nowplaying");
-
-          if (videoID.length > 10) {
-            // if (dontplay) {
-            //   setTimeout(() => {
-            //     player.pauseVideo();
-            //     PauseToggle(true);
-            //   }, 1000);
-            // }
-            if (!dontplay) {
-              player.loadVideoById(videoID, starttime);
-              player.seekTo(starttime);
-              player.playVideo();
-            } else {
-              player.cueVideoById(videoID, starttime);
-            }
-          } else {
-            player.cueVideoById(RandomID());
-          }
-        } else {
-          StartVideo(0, false);
-          player.stopVideo();
-        }
-
-        if (save) {
-          Save();
-        }
-
-        setTimeout(() => {
-          saveready = true;
-        }, 1000);
-      }
-
-      $(document).ready(function () {
-        window.addEventListener("load", (event) => {
-          Load();
-        });
-
-        document.body.onkeyup = function (e) {
-          if (e.key == " " || e.code == "Space" || e.keyCode == 32) {
-            if (player.getPlayerState() == 1) {
-              player.pauseVideo();
-            } else if (player.getPlayerState() == 2) {
-              player.playVideo();
-            }
-          } else if (
-            e.key === "ArrowLeft" ||
-            e.code == "ArrowLeft" ||
-            e.keyCode == 37
-          ) {
-            player.seekTo(player.getCurrentTime() - 5);
-          } else if (
-            e.key === "ArrowRight" ||
-            e.code == "ArrowRight" ||
-            e.keyCode == 39
-          ) {
-            player.seekTo(player.getCurrentTime() + 5);
-          } else if (
-            e.key === "," ||
-            e.code == "Comma" ||
-            e.keyCode == 188
-          ) {
-            player.seekTo(player.getCurrentTime() - 1/30);
-          } else if (
-            e.key === "." ||
-            e.code == "Period" ||
-            e.keyCode == 190
-          ) {
-            player.seekTo(player.getCurrentTime() + 1/30);
-          }
-          else if (
-            e.key === "ArrowUp" ||
-            e.code == "ArrowUp" ||
-            e.keyCode == 38
-          ) {
-            player.seekTo(player.getCurrentTime() - 1);
-          } else if (
-            e.key === "ArrowDown" ||
-            e.code == "ArrowDown" ||
-            e.keyCode == 40
-          ) {
-            player.seekTo(player.getCurrentTime() + 1);
-          }
-        };
-      });
-
-      let countdowninputbox = document.getElementById("setcountdown");
-      countdowninputbox.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") SetCountdown();
-      });
-
-      var nextSegHr = 0;
-      var nextSegMins = 0;
-      var clockActive = false;
-
-      function SetCountdown() {
-        const inputString = document.getElementById("setcountdown").value;
-        const myArray = inputString.split(":");
-
-        var inputMinutes = 0;
-        var inputHours = 0;
-
-        if (inputString.indexOf(":") !== -1) {
-          inputHours = parseInt(myArray[0]);
-          inputMinutes = parseInt(myArray[1]);
-        } else if (parseInt(myArray[0]) > 23)
-          inputMinutes = parseInt(myArray[0]);
-        else inputHours = parseInt(myArray[0]);
-
-        if (Number.isNaN(inputHours)) inputHours = 0;
-        if (Number.isNaN(inputMinutes)) inputMinutes = 0;
-
-        const today = new Date();
-        const hours = today.getHours();
-        const minutes = today.getMinutes();
-
-        var outputHours = inputHours + hours;
-        var outputMinutes = inputMinutes + minutes;
-
-        console.log("hours " + hours);
-        console.log("minutes " + minutes);
-        console.log("inputString " + inputString);
-        console.log("myArray " + myArray);
-        console.log("inputHours " + inputHours);
-        console.log("inputMinutes " + inputMinutes);
-        console.log("outputHours " + outputHours);
-        console.log("outputMinutes " + outputMinutes);
-
-        while (outputMinutes >= 60) {
-          outputMinutes -= 60;
-          outputHours += 1;
-        }
-        if (outputHours >= 24) outputHours -= 24;
-
-        nextSegHr = outputHours;
-        nextSegMins = outputMinutes;
-
-        console.log("nextSegHr " + nextSegHr);
-        console.log("nextSegMins " + nextSegMins);
-
-        if (!clockActive) {
-          clockActive = true;
-          Clock();
-        }
-
-        Save(true);
-      }
-
-      function Clock() {
-        const today = new Date();
-
-        // get time components
-        const hours = today.getHours();
-        const minutes = today.getMinutes();
-        const seconds = today.getSeconds();
-
-        //add '0' to hour, minute & second when they are less 10
-        const hour24With0 = hours < 10 ? "0" + hours : hours;
-        const minutesWith0 = minutes < 10 ? "0" + minutes : minutes;
-        const secondsWith0 = seconds < 10 ? "0" + seconds : seconds;
-
-        const currentTime =
-          hour24With0 + ":" + minutesWith0 + ":" + secondsWith0;
-        const nextSegWith0 = nextSegHr < 10 ? "0" + nextSegHr : nextSegHr;
-        const nextSegMinsWith0 =
-          nextSegMins < 10 ? "0" + nextSegMins : nextSegMins;
-        var segmentEnd = nextSegWith0 + ":" + nextSegMinsWith0; // ":00";
-        document.getElementById("nextSegment").innerHTML = segmentEnd;
-
-        // console.log("hours " + hours);
-        // console.log("minutes " + minutes);
-        // console.log("hour24With0 " + hour24With0);
-        // console.log("minutesWith0 " + minutesWith0);
-        // console.log("currentTime " + currentTime);
-        // console.log("nextSegHr " + nextSegHr);
-        // console.log("nextSegMins " + nextSegMins);
-        // console.log("segmentEnd " + segmentEnd);
-
-        var startDate = new Date("1/1/1900 " + currentTime);
-        var endDate = new Date("1/1/1900 " + segmentEnd);
-        var countdownTime_ms = endDate - startDate; //diff in milliseconds
-        if (countdownTime_ms < 0) {
-          countdownTime_ms += 86400000; //correct for across days
-        }
-
-        // console.log("countdownTime_ms " + countdownTime_ms);
-
-        var countdown = new Date(countdownTime_ms).toISOString().slice(11, 19);
-        document.getElementById("countdown").innerHTML = countdown;
-
-        if (countdownTime_ms >= 86340000) {
-          player.pauseVideo();
-          clockActive = false;
-          document.getElementById("nextSegment").innerHTML = "segmentEnd";
-          document.getElementById("countdown").innerHTML = "countdown";
-        }
-
-        // var percent = (14400000 - countdownTime_ms) / 144000;
-        // document.getElementById("segmentProgress").innerHTML =
-        //   Math.round(percent * 100) / 100 + "% through segment";
-
-        // $("#hourX").css("top", percent + "%");
-        // $("#progressBar").css("height", percent + "%");
-        // $("#progressBarBar").css("top", percent + "%");
-        if (clockActive) setTimeout(Clock, 1000);
-      }
-
-      count = 0;
-      last = count - 1;
-
-      function Add() {
-        $(".ibutton2").blur();
-
-        j = count;
-        $("#inputs").append(
-          ' <div class="ofc" id="inputBlock' +
-            j +
-            '"> <span class="inputNameBlock"> <span class="inputNumber"> :' +
-            (j + 1) +
-            ' </span>  </span> <div class="buttons"> <input type="text" class="inputName" autocomplete="off" id="inputName' +
-            j +
-            '"> <div class="durationText" id="durationMarker' +
-            j +
-            '">...</div> <button id="recheckb' +
-            j +
-            '" class="ibutton" title="Recheck single video"  onclick="ReCheck(' +
-            j +
-            ')"><i class="fa fa-repeat" aria-hidden="true"></i></button> <input type="text" autocomplete="off" id="videoIDInput' +
-            j +
-            '" class="videoIDInput" />   <button id="deleteb' +
-            j +
-            '" class="ibutton" title="Delete playlist item"  onclick="Delete(' +
-            j +
-            ')"><i class="fa fa-times" aria-hidden="true"></i></button>    <button class="ibutton" title="Play this video" onclick="StartVideo(' +
-            j +
-            ')"><i class="fa fa-play-circle" aria-hidden="true"></i></button>   <button class="ibutton" title="Insert playlist slot above"  onclick="ShiftInputs(' +
-            j +
-            ',false)"><i class="fa fa-level-down" aria-hidden="true"></i></button> <button class="ibutton" title="Swap video with below"  onclick="ExchangeDown(' +
-            j +
-            ')"><i class="fa fa-arrows-v" aria-hidden="true"></i></button> </div></div>',
-        );
-
-        count += 1;
-        last = count - 1;
-      }
-
-      open = false;
-
-      function MenuOpenC() {
-        $("#menubutton").blur();
-        MenuLock(true);
-        MenuOpen();
-      }
-
-      function MenuOpen(force = false, value = false) {
-        if (!(locked && !open) && !pinned) {
-          // Pin(true);
-          open = !open;
-
-          if (force) {
-            open = value;
-          }
-
-          if (open) {
-            $("#inputx").removeClass("closemenu");
-            $("#inputx").addClass("openmenu");
-            $("#prevbutton").addClass("hide");
-            $("#nextbutton").addClass("hide");
-            $("#menubutton").addClass("hidevis");
-          } else {
-            $("#inputx").addClass("closemenu");
-            $("#inputx").removeClass("openmenu");
-            $("#prevbutton").removeClass("hide");
-            $("#nextbutton").removeClass("hide");
-            $("#menubutton").removeClass("hidevis");
-          }
-        }
-      }
-      // $("div#inputx").mouseenter(function() {
-      //   //nothing
-      // }).mouseleave(function() {
-      //     if (!pinned) {
-      //       MenuOpen(true, false);
-      //     }
-      // });
-
-      $("div#inputx").hover(
-        function () {
-          //nothing
-        },
-        function () {
-          if (!pinned) {
-            MenuOpen(true, false);
-          }
-        },
-      );
-
-      buttontimeout = 700;
-      function ChangeCheck(next = true) {
-        $("#nextbutton").blur();
-        $("#prevbutton").blur();
-
-        if (saveready) {
-          Save(true);
-        }
-
-        if (player.getPlayerState() == 1) {
-          player.pauseVideo();
-        } else if (player.getPlayerState() == 2) {
-          player.playVideo();
-        }
-
-        if (next) {
-          $("#prevbutton").removeClass("changeconfirm");
-          $("#prevbutton > i").removeClass("buttonconfirm");
-          if ($("#nextbutton").hasClass("changeconfirm")) {
-            Next();
-            $("#nextbutton").removeClass("changeconfirm");
-            $("#nextbutton > i").removeClass("buttonconfirm");
-          } else {
-            $("#nextbutton").addClass("changeconfirm");
-            $("#nextbutton > i").addClass("buttonconfirm");
-            setTimeout(() => {
-              $("#nextbutton").removeClass("changeconfirm");
-              $("#nextbutton > i").removeClass("buttonconfirm");
-            }, buttontimeout);
-          }
-        } else {
-          $("#nextbutton").removeClass("changeconfirm");
-          $("#nextbutton > i").removeClass("buttonconfirm");
-          if ($("#prevbutton").hasClass("changeconfirm")) {
-            Prev();
-            $("#prevbutton").removeClass("changeconfirm");
-            $("#prevbutton > i").removeClass("buttonconfirm");
-          } else {
-            $("#prevbutton").addClass("changeconfirm");
-            $("#prevbutton > i").addClass("buttonconfirm");
-            setTimeout(() => {
-              $("#prevbutton").removeClass("changeconfirm");
-              $("#prevbutton > i").removeClass("buttonconfirm");
-            }, buttontimeout);
-          }
-        }
-      }
-
-      dontplay = true;
-      function PauseToggle(force = false, value = false) {
-        $(".ibutton2").blur();
-
-        if (force) {
-          dontplay = !value;
-        }
-
-        if (dontplay) {
-          $("#pausebutton").removeClass("buttonconfirm");
-          dontplay = false;
-        } else {
-          $("#pausebutton").addClass("buttonconfirm");
-          dontplay = true;
-        }
-      }
-
-      mirror = false;
-      function MirrorToggle(force = false, value = false) {
-        $(".ibutton2").blur();
-
-        if (force) {
-          mirror = !value;
-        }
-
-        if (mirror) {
-          $("#mirrorbutton").removeClass("buttonconfirm");
-          $("#player").removeClass("mirrorx");
-          mirror = false;
-        } else {
-          $("#mirrorbutton").addClass("buttonconfirm");
-          $("#player").addClass("mirrorx");
-          mirror = true;
-        }
-      }
-
-      var loop = false;
-      function LoopToggle(force = false, value = false) {
-        $(".ibutton2").blur();
-
-        if (force) {
-          loop = !value;
-        }
-
-        if (loop) {
-          $("#loopbutton").removeClass("buttonconfirm");
-          loop = false;
-        } else {
-          $("#loopbutton").addClass("buttonconfirm");
-          loop = true;
-        }
-      }
-
-      pinned = false;
-      function Pin(force = false, value = false) {
-        $("#pinbutton").blur();
-        if (force) {
-          pinned = !value;
-        }
-
-        if (pinned) {
-          $("#pinbutton").removeClass("buttonconfirm");
-          pinned = false;
-        } else {
-          $("#pinbutton").addClass("buttonconfirm");
-          pinned = true;
-        }
-      }
-
-      locked = false;
-      function MenuLock() {
-        $("#menulockb").blur();
-        if (locked) {
-          $("#unlockedsym").removeClass("hide");
-          $("#lockedsym").addClass("hide");
-          locked = false;
-        } else {
-          $("#lockedsym").removeClass("hide");
-          $("#unlockedsym").addClass("hide");
-          locked = true;
-        }
-      }
-
-      function Next() {
-        if (currentVideo < last) {
-          StartVideo(currentVideo + 1);
-        } else if (loop) {
-          StartVideo(0);
-        }
-      }
-
-      function Prev() {
-        if (currentVideo > 0) {
-          StartVideo(currentVideo - 1);
-        } else if (loop) {
-          StartVideo(last);
-        }
-      }
-
-      function Delete(vid = 0) {
-        $(".ibutton").blur();
-
-        for (let i = 0; i <= last; i++) {
-          j = i;
-          if (j != vid) {
-            $("#deleteb" + j).removeClass("deleteconfirm");
-          }
-        }
-
-        if ($("#deleteb" + vid).hasClass("deleteconfirm")) {
-          $("#deleteb" + vid).removeClass("deleteconfirm");
-          ShiftInputs(vid);
-        } else {
-          $("#deleteb" + vid).addClass("deleteconfirm");
-          setTimeout(() => {
-            $("#deleteb" + vid).removeClass("deleteconfirm");
-          }, buttontimeout);
-        }
-      }
-
-      function Clear(all = true) {
-        $(".ibutton2").blur();
-
-        var button = $("#clearb");
-
-        $(".ibutton2").blur();
-
-        if (button.hasClass("deleteconfirm")) {
-          if (currentVideo == 0) {
-            ClearAll();
-          } else {
-            ClearWatched();
-          }
-        } else {
-          button.addClass("deleteconfirm");
-          setTimeout(() => {
-            button.removeClass("deleteconfirm");
-          }, buttontimeout);
-        }
-      }
-
-      function ClearWatched() {
-        deleteuntil = currentVideo;
-        for (let i = 0; i < deleteuntil; i++) {
-          ShiftInputs(0);
-        }
-      }
-
-      function ClearAll() {
-        $("div").remove(".ofc");
-
-        count = 0;
-        last = count - 1;
-
-        currentVideo = 0;
-        InitInputs();
-
-        StartVideo();
-      }
-
-      function ShiftInputs(from = 0, next = true) {
-        $(".ibutton").blur();
-
-        if (next == true) {
-          if (last > 0) {
-            for (let i = from; i < last; i++) {
-              j = i;
-              document.getElementById("videoIDInput" + j).value =
-                document.getElementById("videoIDInput" + (j + 1)).value;
-            }
-            for (let i = from; i < last; i++) {
-              j = i;
-              document.querySelector("#inputName" + j).value =
-                document.querySelector("#inputName" + (j + 1)).value;
-            }
-
-            $("#inputBlock" + last).remove();
-            count -= 1;
-            last = count - 1;
-
-            if (from < currentVideo) {
-              ShiftNowPlaying(false);
-            } else if (from == currentVideo) {
-              StartVideo();
-            }
-          } else {
-            document.getElementById("videoIDInput" + 0).value = "";
-            document.querySelector("#inputName" + 0).value = "";
-            StartVideo(0, false);
-          }
-        } else {
-          Add();
-          for (let i = from; i < last; i++) {
-            j = last + from - i;
-            document.getElementById("videoIDInput" + j).value =
-              document.getElementById("videoIDInput" + (j - 1)).value;
-          }
-          document.getElementById("videoIDInput" + from).value = "";
-
-          for (let i = from; i < last; i++) {
-            j = last + from - i;
-            document.querySelector("#inputName" + j).value =
-              document.querySelector("#inputName" + (j - 1)).value;
-          }
-          document.querySelector("#inputName" + from).value = "";
-
-          if (from <= currentVideo) {
-            ShiftNowPlaying();
-          }
-        }
-
-        if (ischecking) {
-          CheckArrayAdd(from);
-          CheckArrayAdd(from + 1);
-          CheckArrayAdd(checking - 1);
-          CheckArrayAdd(checking);
-          CheckArrayAdd(checking + 1);
-        }
-
-        Report();
-      }
-
-      function ExchangeDown(from = 0) {
-        $(".ibutton").blur();
-
-        to = from + 1;
-        fromID = document.getElementById("videoIDInput" + from).value;
-        toID = document.getElementById("videoIDInput" + to).value;
-        fromName = document.querySelector("#inputName" + from).value;
-        toName = document.querySelector("#inputName" + to).value;
-
-        document.getElementById("videoIDInput" + from).value = toID;
-        document.getElementById("videoIDInput" + to).value = fromID;
-        document.querySelector("#inputName" + from).value = toName;
-        document.querySelector("#inputName" + to).value = fromName;
-
-        if (from == currentVideo) {
-          ShiftNowPlaying();
-        } else if (to == currentVideo) {
-          ShiftNowPlaying(false);
-        }
-
-        if (ischecking) {
-          CheckArrayAdd(from);
-          CheckArrayAdd(from + 1);
-        }
-      }
-
-      function ShiftNowPlaying(next = true) {
-        if (next) {
-          $("#inputBlock" + currentVideo).removeClass("nowplaying");
-          currentVideo += 1;
-          $("#inputBlock" + currentVideo).addClass("nowplaying");
-        } else {
-          $("#inputBlock" + currentVideo).removeClass("nowplaying");
-          currentVideo -= 1;
-          $("#inputBlock" + currentVideo).addClass("nowplaying");
-        }
-
-        document.querySelector("#nowplayingno").textContent =
-          "No. " + (currentVideo + 1);
-      }
-
-      function CheckVideoLinks() {
-        for (let i = 0; i < count; i++) {
-          j = i;
-          CheckVideoLink(j);
-        }
-      }
-
-      function CheckVideoLink(set) {
-        videoIDInput = document.getElementById("videoIDInput" + set).value;
-
-        videoID = videoIDInput;
-
-        if (videoIDInput.includes("watch?")) {
-          // has watch? https://www.youtube.com/watch?v=2qT8ZYewYEY
-          videoID = videoIDInput.substr(videoIDInput.indexOf("v=") + 2, 11);
-        } else if (videoIDInput.includes(".be")) {
-          // has .be contraction https://youtu.be/2qT8ZYewYEY?si=bklziccPHp144z_w
-          videoID = videoIDInput.substr(videoIDInput.indexOf(".be/") + 4, 11);
-        } else if (videoIDInput.length < 30) {
-          // does not have ? /SqTY2-Tkfmo
-          videoID = videoIDInput.substr(videoIDInput.length - 11, 11);
-        } else if (
-          document.getElementById("inputName" + set).value.includes("playlist")
-        ) {
-          invert = document
-            .getElementById("inputName" + set)
-            .value.includes("invert");
-          //https://www.youtube.com/playlist?list=PL3EYELrG6hZ3BDEOhfmRU5ImQQYGaBGHK
-          playlistID = videoIDInput;
-          playlistID = videoIDInput.substr(videoIDInput.indexOf("list=") + 5);
-          document.getElementById("videoIDInput" + set).value = playlistID;
-          CheckPlaylistLink(set, playlistID, invert);
-          return;
-        }
-
-        document.getElementById("videoIDInput" + set).value = videoID;
-      }
-
-      // function CheckPlaylistLink(set, playlistID) {
-      //   document.querySelector("#settextt").textContent = playlistID;
-      //   // $.get(
-      //   //   "https://www.googleapis.com/youtube/v3/playlists?part=contentDetails&id=" +
-      //   //     playlistID +
-      //   //     "&key=" +
-      //   //     ytApiKey,
-      //   //   function (data) {
-      //   //     // alert(data.items[0].snippet.title);
-      //   //     numberofvideos = data.items[0].contentDetails.itemCount;
-      //   //     document.querySelector("#settextt").textContent = numberofvideos;
-      //   //   }
-      //   // );
-      //   $.get(
-      //     "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" +
-      //       playlistID +
-      //       "&key=" +
-      //       ytApiKey,
-      //     function (data) {}
-      //   );
-      // }
-
-      function CheckPlaylistLink(
-        set = 0,
-        playlistID = "",
-        invert = false,
-        pageToken = "",
-      ) {
-        var url =
-          "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" +
-          playlistID +
-          "&key=" +
-          ytApiKey +
-          "&maxResults=50";
-
-        if (pageToken) {
-          url += "&pageToken=" + pageToken; // Add the nextPageToken if available
-        }
-
-        $.get(url, function (data) {
-          var videoIds = [];
-          $.each(data.items, function (index, item) {
-            videoNumber = item.snippet.position;
-            videoID = item.snippet.resourceId.videoId;
-            videoIds.push(videoNumber + " : " + videoID);
-
-            ShiftInputs(set + videoNumber + 1, false);
-            document.getElementById(
-              "videoIDInput" + (set + videoNumber),
-            ).value = videoID;
-          });
-
-          console.log(videoIds);
-
-          // Check if there's another page of results
-          if (data.nextPageToken) {
-            console.log("another page");
-            CheckPlaylistLink(set, playlistID, invert, data.nextPageToken); // Recursively get the next page
-          } else {
-            if (invert) {
-              for (let i = 0; i < videoNumber / 2; i++) {
-                console.log("bimbambom");
-                j = i;
-                id1 = set + j;
-                id2 = set + videoNumber - j;
-                console.log(id1 + " / " + id2);
-                holderID = document.getElementById("videoIDInput" + id1).value;
-                holderIDB = document.getElementById("videoIDInput" + id2).value;
-                document.getElementById("videoIDInput" + id1).value = holderIDB;
-                document.getElementById("videoIDInput" + id2).value = holderID;
-              }
-            }
-            ShiftInputs(set + videoIds.length);
-            RestartCheck();
-          }
-        });
-      }
-
-      interval = 0;
-      ischecking = false;
-
-      var checkarray = [];
-
-      function CheckArrayAdd(add) {
-        var deletearray = [];
-
-        if (0 <= add && add <= last) {
-          for (let i = 0; i < checkarray.length; i++) {
-            if (checkarray[i] == add) {
-              deletearray.push(i);
-            }
-          }
-
-          for (let i = 0; i < deletearray.length; i++) {
-            j = deletearray[i];
-            checkarray.splice(j, 1);
-          }
-
-          checkarray.unshift(add);
-          Report();
-        }
-      }
-
-      function RestartCheck() {
-        const urlParams = new URLSearchParams(window.location.search);
-
-        $(".ibutton").blur();
-        CheckVideoLinks();
-
-        checkarray = [];
-        for (let i = 0; i < count; i++) {
-          videoID = document.getElementById("videoIDInput" + i).value;
-          GetDuration(i);
-          if (
-            urlParams.get("in" + i) != videoID ||
-            !urlParams.has("intitle" + i)
-          ) {
-            checkarray.push(i);
-          }
-          Report();
-        }
-
-        if (!ischecking) {
-          // interval = document.getElementById("interval").value;
-          Check();
-        }
-      }
-
-      var checking;
-      function Check() {
-        // interval = document.getElementById("interval").value;
-        // checkplayer.setVolume(0);
-        ischecking = true;
-
-        if (checkarray.length > 0) {
-          checking = checkarray[0];
-          checkarray = checkarray.slice(1);
-
-          Report();
-
-          if (checking < count && checking >= 0) {
-            videoID = document.getElementById("videoIDInput" + checking).value;
-            if (videoID.length > 10) {
-              ProperCheck(checking);
-              setTimeout(() => {
-                Check();
-              }, 1);
-            } else {
-              document.querySelector("#inputName" + checking).value = "...";
-              // setTimeout(() => {
-              Check();
-              // }, 50);
-            }
-          } else {
-            // setTimeout(() => {
-            Check();
-            // }, 50);
-          }
-        } else {
-          document.querySelector("#report").textContent = "checking complete ";
-          ischecking = false;
-          Save(true);
-        }
-      }
-
-      function ReCheck(vid = 0) {
-        $(".ibutton").blur();
-
-        Report();
-        CheckVideoLink(vid);
-        document.querySelector("#inputName" + vid).value = "<queued>";
-        CheckArrayAdd(vid);
-
-        if (!ischecking) {
-          Check();
-        }
-      }
-
-      function Report() {
-        if (ischecking) {
-          document.querySelector("#report").textContent =
-            "checking: [" + checking + "], " + checkarray;
-        }
-      }
-
-      function ProperCheck(vid = 0) {
-        videoID = document.getElementById("videoIDInput" + vid).value;
-        // checkplayer.loadVideoById(videoID);
-        document.querySelector("#inputName" + vid).value = "<checking>";
-        // videoTitle = "";
-
-        $.get(
-          "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" +
-            videoID +
-            "&key=" +
-            ytApiKey,
-          function (data) {
-            // alert(data.items[0].snippet.title);
-            videoTitle = data.items[0].snippet.title;
-            document.querySelector("#inputName" + vid).value = videoTitle;
-          },
-        );
-
-        GetDuration(vid);
-
-        // setTimeout(() => {
-        // document.querySelector("#inputName" + vid).value =
-        //   checkplayer.getVideoData().title;
-
-        // checkplayer.stopVideo();
-        // }, interval - 50);
-      }
-
-      function GetDuration(vid = 0) {
-        document.querySelector("#durationMarker" + vid).textContent = "...";
-
-        $.get(
-          "https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=" +
-            videoID +
-            "&key=" +
-            ytApiKey,
-          function (data) {
-            videoDuration = data.items[0].contentDetails.duration;
-
-            videoDuration = videoDuration.replaceAll("PT", "");
-            hindex = videoDuration.indexOf("H");
-            mindex = videoDuration.indexOf("M");
-            sindex = videoDuration.indexOf("S");
-            stime = 0;
-            mtime = 0;
-            htime = 0;
-
-            if (sindex > 0) {
-              stime = videoDuration.substring(
-                Math.max(hindex, mindex) + 1,
-                sindex,
-              );
-              // videoDuration = videoDuration.replaceAll(stime + "S", "");
-            }
-            if (mindex > 0) {
-              mtime = videoDuration.substring(Math.max(hindex) + 1, mindex);
-              // videoDuration = videoDuration.replaceAll(mtime + "M", "");
-            }
-            if (hindex > 0) {
-              htime = videoDuration.substring(0, hindex);
-              // videoDuration = videoDuration.replaceAll(htime + "H", "");
-            }
-
-            document.querySelector("#durationMarker" + vid).textContent =
-              htime + ":" + LeadingZero(mtime) + ":" + LeadingZero(stime);
-          },
-        );
-      }
-
-      function LeadingZero(number = "") {
-        if (number.length == 2) {
-          return number;
-        }
-        if (number.length == 1) {
-          return "0" + number;
-        }
-        if (number.length == 0) {
-          return "00";
-        }
-        return "00";
-      }
-
-      function SetText() {
-        settext = document.getElementById("settext").value;
-        document.querySelector("#settextt").textContent = settext;
-      }
-
-      function Save(overwrite = false) {
-        CheckVideoLinks();
-        SetTitle();
-
-        const urlParams = new URLSearchParams(window.location.search);
-
-        oldtime = 0;
-        if (urlParams.has("time")) {
-          oldtime = parseInt(urlParams.get("time"));
-        }
-
-        tttttime = Math.trunc(player.getCurrentTime());
-        if (Number.isNaN(tttttime)) {
-          currenttime = oldtime;
-          console.log("not a number");
-        } else if (tttttime == null) {
-          currenttime = oldtime;
-          console.log("null");
-        } else {
-          currenttime = tttttime;
-          // currenttime = "im a frog";
-        }
-
-        querystring = "?";
-        querystring += "apikey=" + ytApiKey + "&";
-        querystring += "startcount=" + count + "&";
-        querystring += "nowplaying=" + currentVideo + "&";
-        querystring += "time=" + currenttime + "&";
-
-        if (clockActive) {
-          querystring += "clock=true" + "&";
-          querystring += "endh=" + nextSegHr + "&";
-          querystring += "endm=" + nextSegMins + "&";
-        }
-
-        playlisttitle = document.getElementById("playlisttitle").value;
-        if (playlisttitle != "") {
-          querystring += "playlist=" + encodeURIComponent(playlisttitle) + "&";
-        }
-
-        if (loop) {
-          querystring += "loop=true" + "&";
-        }
-
-        if (mirror) {
-          querystring += "mirror=true" + "&";
-        }
-
-        for (let i = 0; i < count; i++) {
-          j = i;
-
-          if (document.getElementById("videoIDInput" + j).value != "") {
-            querystring +=
-              "in" +
-              j +
-              "=" +
-              document.getElementById("videoIDInput" + j).value +
-              "&";
-          }
-        }
-
-        for (let i = 0; i < count; i++) {
-          j = i;
-
-          if (document.getElementById("videoIDInput" + j).value != "") {
-            if (
-              document.getElementById("inputName" + j).value != "..." &&
-              document.getElementById("inputName" + j).value != "<checking>" &&
-              document.getElementById("inputName" + j).value != ""
-            ) {
-              querystring +=
-                "intitle" +
-                j +
-                "=" +
-                encodeURIComponent(
-                  document.getElementById("inputName" + j).value,
-                ) +
-                "&";
-            }
-          }
-        }
-
-        // querystring += "interval=" + interval + "&";
-
-        var currenttime = 0;
-
-        // document.querySelector("#inputName3").value = urlParams;
-        // document.querySelector("#inputName4").value = querystring.slice(1, -1);
-        if (querystring.slice(1, -1) == urlParams) {
-          return;
-        }
-
-        if (overwrite) {
-          window.history.replaceState(null, null, querystring);
-        } else {
-          window.history.pushState(null, null, querystring);
-        }
-      }
-
-      window.addEventListener("popstate", function (event) {
-        Load();
-      });
-
-      startxtime = 0;
-      function Load() {
-        const urlParams = new URLSearchParams(window.location.search);
-
-        $("div").remove(".ofc");
-
-        count = 0;
-        last = count - 1;
-
-        if (urlParams.has("apikey") == true) {
-          ytApiKey = urlParams.get("apikey");
-        }
-
-        console.log("ytApiKey" + ytApiKey);
-
-        if (urlParams.has("startcount") == true) {
-          startcount = urlParams.get("startcount");
-          InitInputs(startcount);
-        } else {
-          InitInputs();
-        }
-
-        if (urlParams.has("clock") == true) {
-          clockActive = urlParams.get("clock");
-          nextSegHr = parseInt(urlParams.get("endh"));
-          nextSegMins = parseInt(urlParams.get("endm"));
-          Clock();
-        }
-
-        if (urlParams.has("nowplaying") == true) {
-          currentVideo = parseInt(urlParams.get("nowplaying"));
-        }
-        if (urlParams.has("loop") == true) {
-          loop = urlParams.get("loop");
-          LoopToggle(true, loop);
-        }
-        if (urlParams.has("mirror") == true) {
-          mirror = urlParams.get("mirror");
-          MirrorToggle(true, loop);
-        }
-
-        if (urlParams.has("time") == true) {
-          startxtime = parseInt(urlParams.get("time"));
-        }
-
-        // if (urlParams.has("interval") == true) {
-        //   interval = urlParams.get("interval");
-        // }
-        // document.getElementById("interval").value = interval;
-
-        if (urlParams.has("playlist") == true) {
-          playlisttitle = urlParams.get("playlist");
-          document.getElementById("playlisttitle").value = playlisttitle;
-        }
-
-        if (urlParams.has("in0") == true) {
-          for (let i = 0; i < count; i++) {
-            j = i;
-            document.getElementById("videoIDInput" + j).value = urlParams.get(
-              "in" + j,
-            );
-            document.getElementById("inputName" + j).value = urlParams.get(
-              "intitle" + j,
-            );
-
-            document.getElementById("inputName" + j).value = document
-              .getElementById("inputName" + j)
-              .value.replaceAll("^and^", "&")
-              .replaceAll("^percent^", "%")
-              .replaceAll("^hash^", "#");
-          }
-        }
-
-        FirstStartTimeout();
-      }
-
-      function FirstStartTimeout() {
-        setTimeout(() => {
-          if (playerready) {
-            dontplay = true;
-            StartVideo(currentVideo, false, startxtime);
-            RestartCheck();
-          } else {
-            FirstStartTimeout();
-          }
-        }, 100);
-      }
-
-      function InitInputs(sc = 3) {
-        for (let i = 0; i < sc; i++) {
-          j = i;
-          Add();
-        }
-      }
-      function LoadTime() {
-        $(".ibutton2").blur();
-
-        player.seekTo(startxtime);
-
-        const urlParams = new URLSearchParams(window.location.search);
-
-        if (urlParams.has("time") == true) {
-          startxtime = parseInt(urlParams.get("time"));
-        }
-      }
-    </script>
-  </body>
+					<div class="small mrb" id="setcountdowncontainer">
+						End:
+						<input type="text" autocomplete="off" id="setcountdown" value="" />
+						<button
+							title="set text"
+							class="ibutton3 mrb"
+							id="setcountdownb"
+							onclick="SetCountdown()"
+						>
+							<i class="fa fa-clock-o" aria-hidden="true"></i>
+						</button>
+						<div class="small mrb" id="countdown">countdown</div>
+						<div class="small mrb" id="nextSegment">segmentEnd</div>
+					</div>
+
+					<div class="small mrb">
+						Show:
+						<input type="text" autocomplete="off" id="settext" value="" />
+						<button
+							title="set text"
+							class="ibutton2 mrb"
+							id="settextb"
+							onclick="SetText()"
+						>
+							<i class="fa fa-arrow-right" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div style="margin-top: 10px" class="small" id="settextt">Nothing Here</div>
+				</div>
+
+				<button title="Mirror" class="ibutton2 mrb" id="mirrorbutton" onclick="MirrorToggle()">
+					<i class="fa fa-exchange" aria-hidden="true"></i>
+				</button>
+
+				<button title="Loop" class="ibutton2 mrb" id="loopbutton" onclick="LoopToggle()">
+					<i class="fa fa-refresh" aria-hidden="true"></i>
+				</button>
+
+				<button
+					title="Pause after video"
+					class="ibutton2 mrb"
+					id="pausebutton"
+					onclick="PauseToggle()"
+				>
+					<i class="fa fa-pause-circle" aria-hidden="true"></i>
+				</button>
+
+				<button title="Add playlist slot" class="ibutton2 mrb" id="add" onclick="Add()">
+					<i class="fa fa-plus" aria-hidden="true"></i>
+				</button>
+			</div>
+
+			<div id="inputxinside">
+				<div>
+					Now Playing: <span id="nowplayingno" class="small"></span> ||
+					<span id="nowplaying"></span>
+				</div>
+
+				<br />
+
+				<div id="inputs"></div>
+			</div>
+		</div>
+
+		<script>
+			var ytApiKey = "";
+
+			defaultID = "KzINIG0OmM4";
+			defaultIDs = ["KzINIG0OmM4", "KzINIG0OmM4", "KzINIG0OmM4"];
+
+			function RandomID() {
+				defaultID = defaultIDs[Math.floor(Math.random() * defaultIDs.length)];
+			}
+
+			// 2. This code loads the IFrame Player API code asynchronously.
+			var tag = document.createElement("script");
+
+			tag.src = "https://www.youtube.com/iframe_api?app=desktop";
+			var firstScriptTag = document.getElementsByTagName("script")[0];
+			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+			// 3. This function creates an <iframe> (and YouTube player)
+			//    after the API code downloads.
+			var player;
+			// var checkplayer;
+			function onYouTubeIframeAPIReady() {
+				player = new YT.Player("player", {
+					events: {
+						onReady: onPlayerReady,
+						onStateChange: onPlayerStateChange,
+					},
+				});
+				// checkplayer = new YT.Player("checkplayer", {});
+
+				// RandomID();
+				// player.loadVideoById(defaultID, 0);
+				// player = new YT.Player("player", {
+				//   height: "100%",
+				//   width: "100%",
+				//   videoId: defaultID,
+				//   playerVars: {},
+				//   events: {
+				//     onReady: onPlayerReady,
+				//     onStateChange: onPlayerStateChange,
+				//   },
+				// });
+				// checkplayer = new YT.Player("checkplayer", {
+				//   height: "50%",
+				//   width: "50%",
+				//   videoId: defaultID,
+				//   playerVars: {},
+				//   events: {},
+				// });
+			}
+
+			$("#player").attr("referrerpolicy", "strict-origin-when-cross-origin");
+
+			var playerready = false;
+			// 4. The API will call this function when the video player is ready.
+			function onPlayerReady(event) {
+				// StartVideo();
+				// event.target.playVideo();
+				playerready = true;
+			}
+
+			var saveready = false;
+
+			// 5. The API calls this function when the player's state changes.
+			//    The function indicates that when playing a video (state=1),
+			//    the player should play for six seconds and then stop.
+			function onPlayerStateChange(event) {
+				document.querySelector("#nowplaying").textContent = player.getVideoData().title;
+
+				SetTitle();
+
+				document.querySelector("#nowplayingno").textContent = "No. " + (currentVideo + 1);
+
+				// document.querySelector("#current").textContent = event.data;
+
+				if (event.data == 0) {
+					Next();
+				}
+				if (event.data == 1) {
+					dontplay = false;
+				}
+				if (event.data == 2 && saveready) {
+					Save(true);
+				}
+			}
+
+			currentVideo = 0;
+
+			function SetTitle() {
+				doctitle = "B▶ ";
+
+				playlisttitle = document.getElementById("playlisttitle").value;
+				if (playlisttitle != "") {
+					doctitle = "";
+					// doctitle += " (" + (currentVideo + 1) + "/" + count + ")";
+					doctitle +=
+						"B【" +
+						playlisttitle +
+						"】 ▶  (" +
+						(currentVideo + 1) +
+						"/" +
+						count +
+						") ";
+					// doctitle += " ▶ ";
+				}
+
+				// videoID = document.getElementById("videoIDInput" + currentVideo).value;
+				// videoTitle = "";
+				// console.log(videoID);
+				// $.get(
+				//   "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" +
+				//     videoID +
+				//     "&key=" +
+				//     ytApiKey,
+				//   function (data) {
+				//     // alert(data.items[0].snippet.title);
+				//     videoTitle = data.items[0].snippet.title;
+				//     doctitle += videoTitle;
+				//   }
+				// );
+				// console.log(videoTitle);
+
+				if (player.getVideoData()) {
+					doctitle += player.getVideoData().title;
+				}
+
+				document.title = doctitle;
+			}
+
+			function StartVideo(vid = currentVideo, save = true, starttime = 0) {
+				CheckVideoLinks();
+
+				if (
+					document.getElementById("inputName" + vid).value == "..." ||
+					document.getElementById("inputName" + vid).value == "<checking>" ||
+					document.getElementById("inputName" + vid).value == ""
+				) {
+					ReCheck(vid);
+				}
+
+				$(".ibutton").blur();
+
+				if (vid <= last) {
+					videoID = document.getElementById("videoIDInput" + vid).value;
+					// document.querySelector("#current").textContent = vid;
+
+					$("#inputBlock" + currentVideo).removeClass("nowplaying");
+					currentVideo = vid;
+					$("#inputBlock" + currentVideo).addClass("nowplaying");
+
+					if (videoID.length > 10) {
+						// if (dontplay) {
+						//   setTimeout(() => {
+						//     player.pauseVideo();
+						//     PauseToggle(true);
+						//   }, 1000);
+						// }
+						if (!dontplay) {
+							player.loadVideoById(videoID, starttime);
+							player.seekTo(starttime);
+							player.playVideo();
+						} else {
+							player.cueVideoById(videoID, starttime);
+						}
+					} else {
+						player.cueVideoById(RandomID());
+					}
+				} else {
+					StartVideo(0, false);
+					player.stopVideo();
+				}
+
+				if (save) {
+					Save();
+				}
+
+				setTimeout(() => {
+					saveready = true;
+				}, 1000);
+			}
+
+			$(document).ready(function () {
+				window.addEventListener("load", (event) => {
+					Load();
+				});
+
+				document.body.onkeyup = function (e) {
+					if (e.key == " " || e.code == "Space" || e.keyCode == 32) {
+						if (player.getPlayerState() == 1) {
+							player.pauseVideo();
+						} else if (player.getPlayerState() == 2) {
+							player.playVideo();
+						}
+					} else if (e.key === "ArrowLeft" || e.code == "ArrowLeft" || e.keyCode == 37) {
+						if (e.ctrlKey) {
+							player.seekTo(player.getCurrentTime() - 1);
+						} else {
+							player.seekTo(player.getCurrentTime() - 5);
+						}
+					} else if (
+						e.key === "ArrowRight" ||
+						e.code == "ArrowRight" ||
+						e.keyCode == 39
+					) {
+						if (e.ctrlKey) {
+							player.seekTo(player.getCurrentTime() + 1);
+						} else {
+							player.seekTo(player.getCurrentTime() + 5);
+						}
+					} else if (e.key === "," || e.code == "Comma" || e.keyCode == 188) {
+						player.seekTo(player.getCurrentTime() - 1 / 30);
+					} else if (e.key === "." || e.code == "Period" || e.keyCode == 190) {
+						player.seekTo(player.getCurrentTime() + 1 / 30);
+					} else if (e.key === "ArrowUp" || e.code == "ArrowUp" || e.keyCode == 38) {
+						if (e.ctrlKey) {
+							player.setVolume(player.getVolume() + 1);
+						} else {
+							player.setVolume(player.getVolume() + 10);
+						}
+					} else if (e.key === "ArrowDown" || e.code == "ArrowDown" || e.keyCode == 40) {
+						if (e.ctrlKey) {
+							player.setVolume(player.getVolume() - 1);
+						} else {
+							player.setVolume(player.getVolume() - 10);
+						}
+					}
+				};
+			});
+
+			let countdowninputbox = document.getElementById("setcountdown");
+			countdowninputbox.addEventListener("keydown", (e) => {
+				if (e.key === "Enter") SetCountdown();
+			});
+
+			var nextSegHr = 0;
+			var nextSegMins = 0;
+			var clockActive = false;
+
+			function SetCountdown() {
+				const inputString = document.getElementById("setcountdown").value;
+				const myArray = inputString.split(":");
+
+				var inputMinutes = 0;
+				var inputHours = 0;
+
+				if (inputString.indexOf(":") !== -1) {
+					inputHours = parseInt(myArray[0]);
+					inputMinutes = parseInt(myArray[1]);
+				} else if (parseInt(myArray[0]) > 23) inputMinutes = parseInt(myArray[0]);
+				else inputHours = parseInt(myArray[0]);
+
+				if (Number.isNaN(inputHours)) inputHours = 0;
+				if (Number.isNaN(inputMinutes)) inputMinutes = 0;
+
+				const today = new Date();
+				const hours = today.getHours();
+				const minutes = today.getMinutes();
+
+				var outputHours = inputHours + hours;
+				var outputMinutes = inputMinutes + minutes;
+
+				console.log("hours " + hours);
+				console.log("minutes " + minutes);
+				console.log("inputString " + inputString);
+				console.log("myArray " + myArray);
+				console.log("inputHours " + inputHours);
+				console.log("inputMinutes " + inputMinutes);
+				console.log("outputHours " + outputHours);
+				console.log("outputMinutes " + outputMinutes);
+
+				while (outputMinutes >= 60) {
+					outputMinutes -= 60;
+					outputHours += 1;
+				}
+				if (outputHours >= 24) outputHours -= 24;
+
+				nextSegHr = outputHours;
+				nextSegMins = outputMinutes;
+
+				console.log("nextSegHr " + nextSegHr);
+				console.log("nextSegMins " + nextSegMins);
+
+				if (!clockActive) {
+					clockActive = true;
+					Clock();
+				}
+
+				Save(true);
+			}
+
+			function Clock() {
+				const today = new Date();
+
+				// get time components
+				const hours = today.getHours();
+				const minutes = today.getMinutes();
+				const seconds = today.getSeconds();
+
+				//add '0' to hour, minute & second when they are less 10
+				const hour24With0 = hours < 10 ? "0" + hours : hours;
+				const minutesWith0 = minutes < 10 ? "0" + minutes : minutes;
+				const secondsWith0 = seconds < 10 ? "0" + seconds : seconds;
+
+				const currentTime = hour24With0 + ":" + minutesWith0 + ":" + secondsWith0;
+				const nextSegWith0 = nextSegHr < 10 ? "0" + nextSegHr : nextSegHr;
+				const nextSegMinsWith0 = nextSegMins < 10 ? "0" + nextSegMins : nextSegMins;
+				var segmentEnd = nextSegWith0 + ":" + nextSegMinsWith0; // ":00";
+				document.getElementById("nextSegment").innerHTML = segmentEnd;
+
+				// console.log("hours " + hours);
+				// console.log("minutes " + minutes);
+				// console.log("hour24With0 " + hour24With0);
+				// console.log("minutesWith0 " + minutesWith0);
+				// console.log("currentTime " + currentTime);
+				// console.log("nextSegHr " + nextSegHr);
+				// console.log("nextSegMins " + nextSegMins);
+				// console.log("segmentEnd " + segmentEnd);
+
+				var startDate = new Date("1/1/1900 " + currentTime);
+				var endDate = new Date("1/1/1900 " + segmentEnd);
+				var countdownTime_ms = endDate - startDate; //diff in milliseconds
+				if (countdownTime_ms < 0) {
+					countdownTime_ms += 86400000; //correct for across days
+				}
+
+				// console.log("countdownTime_ms " + countdownTime_ms);
+
+				var countdown = new Date(countdownTime_ms).toISOString().slice(11, 19);
+				document.getElementById("countdown").innerHTML = countdown;
+
+				if (countdownTime_ms >= 86340000) {
+					player.pauseVideo();
+					clockActive = false;
+					document.getElementById("nextSegment").innerHTML = "segmentEnd";
+					document.getElementById("countdown").innerHTML = "countdown";
+				}
+
+				// var percent = (14400000 - countdownTime_ms) / 144000;
+				// document.getElementById("segmentProgress").innerHTML =
+				//   Math.round(percent * 100) / 100 + "% through segment";
+
+				// $("#hourX").css("top", percent + "%");
+				// $("#progressBar").css("height", percent + "%");
+				// $("#progressBarBar").css("top", percent + "%");
+				if (clockActive) setTimeout(Clock, 1000);
+			}
+
+			count = 0;
+			last = count - 1;
+
+			function Add() {
+				$(".ibutton2").blur();
+
+				j = count;
+				$("#inputs").append(
+					' <div class="ofc" id="inputBlock' +
+						j +
+						'"> <span class="inputNameBlock"> <span class="inputNumber"> :' +
+						(j + 1) +
+						' </span>  </span> <div class="buttons"> <input type="text" class="inputName" autocomplete="off" id="inputName' +
+						j +
+						'"> <div class="durationText" id="durationMarker' +
+						j +
+						'">...</div> <button id="recheckb' +
+						j +
+						'" class="ibutton" title="Recheck single video"  onclick="ReCheck(' +
+						j +
+						')"><i class="fa fa-repeat" aria-hidden="true"></i></button> <input type="text" autocomplete="off" id="videoIDInput' +
+						j +
+						'" class="videoIDInput" />   <button id="deleteb' +
+						j +
+						'" class="ibutton" title="Delete playlist item"  onclick="Delete(' +
+						j +
+						')"><i class="fa fa-times" aria-hidden="true"></i></button>    <button class="ibutton" title="Play this video" onclick="StartVideo(' +
+						j +
+						')"><i class="fa fa-play-circle" aria-hidden="true"></i></button>   <button class="ibutton" title="Insert playlist slot above"  onclick="ShiftInputs(' +
+						j +
+						',false)"><i class="fa fa-level-down" aria-hidden="true"></i></button> <button class="ibutton" title="Swap video with below"  onclick="ExchangeDown(' +
+						j +
+						')"><i class="fa fa-arrows-v" aria-hidden="true"></i></button> </div></div>',
+				);
+
+				count += 1;
+				last = count - 1;
+			}
+
+			open = false;
+
+			function MenuOpenC() {
+				$("#menubutton").blur();
+				MenuLock(true);
+				MenuOpen();
+			}
+
+			function MenuOpen(force = false, value = false) {
+				if (!(locked && !open) && !pinned) {
+					// Pin(true);
+					open = !open;
+
+					if (force) {
+						open = value;
+					}
+
+					if (open) {
+						$("#inputx").removeClass("closemenu");
+						$("#inputx").addClass("openmenu");
+						$("#prevbutton").addClass("hide");
+						$("#nextbutton").addClass("hide");
+						$("#menubutton").addClass("hidevis");
+					} else {
+						$("#inputx").addClass("closemenu");
+						$("#inputx").removeClass("openmenu");
+						$("#prevbutton").removeClass("hide");
+						$("#nextbutton").removeClass("hide");
+						$("#menubutton").removeClass("hidevis");
+					}
+				}
+			}
+			// $("div#inputx").mouseenter(function() {
+			//   //nothing
+			// }).mouseleave(function() {
+			//     if (!pinned) {
+			//       MenuOpen(true, false);
+			//     }
+			// });
+
+			$("div#inputx").hover(
+				function () {
+					//nothing
+				},
+				function () {
+					if (!pinned) {
+						MenuOpen(true, false);
+					}
+				},
+			);
+
+			buttontimeout = 700;
+			function ChangeCheck(next = true) {
+				$("#nextbutton").blur();
+				$("#prevbutton").blur();
+
+				if (saveready) {
+					Save(true);
+				}
+
+				if (player.getPlayerState() == 1) {
+					player.pauseVideo();
+				} else if (player.getPlayerState() == 2) {
+					player.playVideo();
+				}
+
+				if (next) {
+					$("#prevbutton").removeClass("changeconfirm");
+					$("#prevbutton > i").removeClass("buttonconfirm");
+					if ($("#nextbutton").hasClass("changeconfirm")) {
+						Next();
+						$("#nextbutton").removeClass("changeconfirm");
+						$("#nextbutton > i").removeClass("buttonconfirm");
+					} else {
+						$("#nextbutton").addClass("changeconfirm");
+						$("#nextbutton > i").addClass("buttonconfirm");
+						setTimeout(() => {
+							$("#nextbutton").removeClass("changeconfirm");
+							$("#nextbutton > i").removeClass("buttonconfirm");
+						}, buttontimeout);
+					}
+				} else {
+					$("#nextbutton").removeClass("changeconfirm");
+					$("#nextbutton > i").removeClass("buttonconfirm");
+					if ($("#prevbutton").hasClass("changeconfirm")) {
+						Prev();
+						$("#prevbutton").removeClass("changeconfirm");
+						$("#prevbutton > i").removeClass("buttonconfirm");
+					} else {
+						$("#prevbutton").addClass("changeconfirm");
+						$("#prevbutton > i").addClass("buttonconfirm");
+						setTimeout(() => {
+							$("#prevbutton").removeClass("changeconfirm");
+							$("#prevbutton > i").removeClass("buttonconfirm");
+						}, buttontimeout);
+					}
+				}
+			}
+
+			dontplay = true;
+			function PauseToggle(force = false, value = false) {
+				$(".ibutton2").blur();
+
+				if (force) {
+					dontplay = !value;
+				}
+
+				if (dontplay) {
+					$("#pausebutton").removeClass("buttonconfirm");
+					dontplay = false;
+				} else {
+					$("#pausebutton").addClass("buttonconfirm");
+					dontplay = true;
+				}
+			}
+
+			mirror = false;
+			function MirrorToggle(force = false, value = false) {
+				$(".ibutton2").blur();
+
+				if (force) {
+					mirror = !value;
+				}
+
+				if (mirror) {
+					$("#mirrorbutton").removeClass("buttonconfirm");
+					$("#player").removeClass("mirrorx");
+					mirror = false;
+				} else {
+					$("#mirrorbutton").addClass("buttonconfirm");
+					$("#player").addClass("mirrorx");
+					mirror = true;
+				}
+			}
+
+			var loop = false;
+			function LoopToggle(force = false, value = false) {
+				$(".ibutton2").blur();
+
+				if (force) {
+					loop = !value;
+				}
+
+				if (loop) {
+					$("#loopbutton").removeClass("buttonconfirm");
+					loop = false;
+				} else {
+					$("#loopbutton").addClass("buttonconfirm");
+					loop = true;
+				}
+			}
+
+			pinned = false;
+			function Pin(force = false, value = false) {
+				$("#pinbutton").blur();
+				if (force) {
+					pinned = !value;
+				}
+
+				if (pinned) {
+					$("#pinbutton").removeClass("buttonconfirm");
+					pinned = false;
+				} else {
+					$("#pinbutton").addClass("buttonconfirm");
+					pinned = true;
+				}
+			}
+
+			locked = false;
+			function MenuLock() {
+				$("#menulockb").blur();
+				if (locked) {
+					$("#unlockedsym").removeClass("hide");
+					$("#lockedsym").addClass("hide");
+					locked = false;
+				} else {
+					$("#lockedsym").removeClass("hide");
+					$("#unlockedsym").addClass("hide");
+					locked = true;
+				}
+			}
+
+			function Next() {
+				if (currentVideo < last) {
+					StartVideo(currentVideo + 1);
+				} else if (loop) {
+					StartVideo(0);
+				}
+			}
+
+			function Prev() {
+				if (currentVideo > 0) {
+					StartVideo(currentVideo - 1);
+				} else if (loop) {
+					StartVideo(last);
+				}
+			}
+
+			function Delete(vid = 0) {
+				$(".ibutton").blur();
+
+				for (let i = 0; i <= last; i++) {
+					j = i;
+					if (j != vid) {
+						$("#deleteb" + j).removeClass("deleteconfirm");
+					}
+				}
+
+				if ($("#deleteb" + vid).hasClass("deleteconfirm")) {
+					$("#deleteb" + vid).removeClass("deleteconfirm");
+					ShiftInputs(vid);
+				} else {
+					$("#deleteb" + vid).addClass("deleteconfirm");
+					setTimeout(() => {
+						$("#deleteb" + vid).removeClass("deleteconfirm");
+					}, buttontimeout);
+				}
+			}
+
+			function Clear(all = true) {
+				$(".ibutton2").blur();
+
+				var button = $("#clearb");
+
+				$(".ibutton2").blur();
+
+				if (button.hasClass("deleteconfirm")) {
+					if (currentVideo == 0) {
+						ClearAll();
+					} else {
+						ClearWatched();
+					}
+				} else {
+					button.addClass("deleteconfirm");
+					setTimeout(() => {
+						button.removeClass("deleteconfirm");
+					}, buttontimeout);
+				}
+			}
+
+			function ClearWatched() {
+				deleteuntil = currentVideo;
+				for (let i = 0; i < deleteuntil; i++) {
+					ShiftInputs(0);
+				}
+			}
+
+			function ClearAll() {
+				$("div").remove(".ofc");
+
+				count = 0;
+				last = count - 1;
+
+				currentVideo = 0;
+				InitInputs();
+
+				StartVideo();
+			}
+
+			function ShiftInputs(from = 0, next = true) {
+				$(".ibutton").blur();
+
+				if (next == true) {
+					if (last > 0) {
+						for (let i = from; i < last; i++) {
+							j = i;
+							document.getElementById("videoIDInput" + j).value =
+								document.getElementById("videoIDInput" + (j + 1)).value;
+						}
+						for (let i = from; i < last; i++) {
+							j = i;
+							document.querySelector("#inputName" + j).value =
+								document.querySelector("#inputName" + (j + 1)).value;
+						}
+
+						$("#inputBlock" + last).remove();
+						count -= 1;
+						last = count - 1;
+
+						if (from < currentVideo) {
+							ShiftNowPlaying(false);
+						} else if (from == currentVideo) {
+							StartVideo();
+						}
+					} else {
+						document.getElementById("videoIDInput" + 0).value = "";
+						document.querySelector("#inputName" + 0).value = "";
+						StartVideo(0, false);
+					}
+				} else {
+					Add();
+					for (let i = from; i < last; i++) {
+						j = last + from - i;
+						document.getElementById("videoIDInput" + j).value =
+							document.getElementById("videoIDInput" + (j - 1)).value;
+					}
+					document.getElementById("videoIDInput" + from).value = "";
+
+					for (let i = from; i < last; i++) {
+						j = last + from - i;
+						document.querySelector("#inputName" + j).value = document.querySelector(
+							"#inputName" + (j - 1),
+						).value;
+					}
+					document.querySelector("#inputName" + from).value = "";
+
+					if (from <= currentVideo) {
+						ShiftNowPlaying();
+					}
+				}
+
+				if (ischecking) {
+					CheckArrayAdd(from);
+					CheckArrayAdd(from + 1);
+					CheckArrayAdd(checking - 1);
+					CheckArrayAdd(checking);
+					CheckArrayAdd(checking + 1);
+				}
+
+				Report();
+			}
+
+			function ExchangeDown(from = 0) {
+				$(".ibutton").blur();
+
+				to = from + 1;
+				fromID = document.getElementById("videoIDInput" + from).value;
+				toID = document.getElementById("videoIDInput" + to).value;
+				fromName = document.querySelector("#inputName" + from).value;
+				toName = document.querySelector("#inputName" + to).value;
+
+				document.getElementById("videoIDInput" + from).value = toID;
+				document.getElementById("videoIDInput" + to).value = fromID;
+				document.querySelector("#inputName" + from).value = toName;
+				document.querySelector("#inputName" + to).value = fromName;
+
+				if (from == currentVideo) {
+					ShiftNowPlaying();
+				} else if (to == currentVideo) {
+					ShiftNowPlaying(false);
+				}
+
+				if (ischecking) {
+					CheckArrayAdd(from);
+					CheckArrayAdd(from + 1);
+				}
+			}
+
+			function ShiftNowPlaying(next = true) {
+				if (next) {
+					$("#inputBlock" + currentVideo).removeClass("nowplaying");
+					currentVideo += 1;
+					$("#inputBlock" + currentVideo).addClass("nowplaying");
+				} else {
+					$("#inputBlock" + currentVideo).removeClass("nowplaying");
+					currentVideo -= 1;
+					$("#inputBlock" + currentVideo).addClass("nowplaying");
+				}
+
+				document.querySelector("#nowplayingno").textContent = "No. " + (currentVideo + 1);
+			}
+
+			function CheckVideoLinks() {
+				for (let i = 0; i < count; i++) {
+					j = i;
+					CheckVideoLink(j);
+				}
+			}
+
+			function CheckVideoLink(set) {
+				videoIDInput = document.getElementById("videoIDInput" + set).value;
+
+				videoID = videoIDInput;
+
+				if (videoIDInput.includes("watch?")) {
+					// has watch? https://www.youtube.com/watch?v=2qT8ZYewYEY
+					videoID = videoIDInput.substr(videoIDInput.indexOf("v=") + 2, 11);
+				} else if (videoIDInput.includes(".be")) {
+					// has .be contraction https://youtu.be/2qT8ZYewYEY?si=bklziccPHp144z_w
+					videoID = videoIDInput.substr(videoIDInput.indexOf(".be/") + 4, 11);
+				} else if (videoIDInput.length < 30) {
+					// does not have ? /SqTY2-Tkfmo
+					videoID = videoIDInput.substr(videoIDInput.length - 11, 11);
+				} else if (document.getElementById("inputName" + set).value.includes("playlist")) {
+					invert = document.getElementById("inputName" + set).value.includes("invert");
+					//https://www.youtube.com/playlist?list=PL3EYELrG6hZ3BDEOhfmRU5ImQQYGaBGHK
+					playlistID = videoIDInput;
+					playlistID = videoIDInput.substr(videoIDInput.indexOf("list=") + 5);
+					document.getElementById("videoIDInput" + set).value = playlistID;
+					CheckPlaylistLink(set, playlistID, invert);
+					return;
+				}
+
+				document.getElementById("videoIDInput" + set).value = videoID;
+			}
+
+			// function CheckPlaylistLink(set, playlistID) {
+			//   document.querySelector("#settextt").textContent = playlistID;
+			//   // $.get(
+			//   //   "https://www.googleapis.com/youtube/v3/playlists?part=contentDetails&id=" +
+			//   //     playlistID +
+			//   //     "&key=" +
+			//   //     ytApiKey,
+			//   //   function (data) {
+			//   //     // alert(data.items[0].snippet.title);
+			//   //     numberofvideos = data.items[0].contentDetails.itemCount;
+			//   //     document.querySelector("#settextt").textContent = numberofvideos;
+			//   //   }
+			//   // );
+			//   $.get(
+			//     "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" +
+			//       playlistID +
+			//       "&key=" +
+			//       ytApiKey,
+			//     function (data) {}
+			//   );
+			// }
+
+			function CheckPlaylistLink(set = 0, playlistID = "", invert = false, pageToken = "") {
+				var url =
+					"https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" +
+					playlistID +
+					"&key=" +
+					ytApiKey +
+					"&maxResults=50";
+
+				if (pageToken) {
+					url += "&pageToken=" + pageToken; // Add the nextPageToken if available
+				}
+
+				$.get(url, function (data) {
+					var videoIds = [];
+					$.each(data.items, function (index, item) {
+						videoNumber = item.snippet.position;
+						videoID = item.snippet.resourceId.videoId;
+						videoIds.push(videoNumber + " : " + videoID);
+
+						ShiftInputs(set + videoNumber + 1, false);
+						document.getElementById("videoIDInput" + (set + videoNumber)).value =
+							videoID;
+					});
+
+					console.log(videoIds);
+
+					// Check if there's another page of results
+					if (data.nextPageToken) {
+						console.log("another page");
+						CheckPlaylistLink(set, playlistID, invert, data.nextPageToken); // Recursively get the next page
+					} else {
+						if (invert) {
+							for (let i = 0; i < videoNumber / 2; i++) {
+								console.log("bimbambom");
+								j = i;
+								id1 = set + j;
+								id2 = set + videoNumber - j;
+								console.log(id1 + " / " + id2);
+								holderID = document.getElementById(
+									"videoIDInput" + id1,
+								).value;
+								holderIDB = document.getElementById(
+									"videoIDInput" + id2,
+								).value;
+								document.getElementById("videoIDInput" + id1).value =
+									holderIDB;
+								document.getElementById("videoIDInput" + id2).value =
+									holderID;
+							}
+						}
+						ShiftInputs(set + videoIds.length);
+						RestartCheck();
+					}
+				});
+			}
+
+			interval = 0;
+			ischecking = false;
+
+			var checkarray = [];
+
+			function CheckArrayAdd(add) {
+				var deletearray = [];
+
+				if (0 <= add && add <= last) {
+					for (let i = 0; i < checkarray.length; i++) {
+						if (checkarray[i] == add) {
+							deletearray.push(i);
+						}
+					}
+
+					for (let i = 0; i < deletearray.length; i++) {
+						j = deletearray[i];
+						checkarray.splice(j, 1);
+					}
+
+					checkarray.unshift(add);
+					Report();
+				}
+			}
+
+			function RestartCheck() {
+				const urlParams = new URLSearchParams(window.location.search);
+
+				$(".ibutton").blur();
+				CheckVideoLinks();
+
+				checkarray = [];
+				for (let i = 0; i < count; i++) {
+					videoID = document.getElementById("videoIDInput" + i).value;
+					GetDuration(i);
+					if (urlParams.get("in" + i) != videoID || !urlParams.has("intitle" + i)) {
+						checkarray.push(i);
+					}
+					Report();
+				}
+
+				if (!ischecking) {
+					// interval = document.getElementById("interval").value;
+					Check();
+				}
+			}
+
+			var checking;
+			function Check() {
+				// interval = document.getElementById("interval").value;
+				// checkplayer.setVolume(0);
+				ischecking = true;
+
+				if (checkarray.length > 0) {
+					checking = checkarray[0];
+					checkarray = checkarray.slice(1);
+
+					Report();
+
+					if (checking < count && checking >= 0) {
+						videoID = document.getElementById("videoIDInput" + checking).value;
+						if (videoID.length > 10) {
+							ProperCheck(checking);
+							setTimeout(() => {
+								Check();
+							}, 1);
+						} else {
+							document.querySelector("#inputName" + checking).value = "...";
+							// setTimeout(() => {
+							Check();
+							// }, 50);
+						}
+					} else {
+						// setTimeout(() => {
+						Check();
+						// }, 50);
+					}
+				} else {
+					document.querySelector("#report").textContent = "checking complete ";
+					ischecking = false;
+					Save(true);
+				}
+			}
+
+			function ReCheck(vid = 0) {
+				$(".ibutton").blur();
+
+				Report();
+				CheckVideoLink(vid);
+				document.querySelector("#inputName" + vid).value = "<queued>";
+				CheckArrayAdd(vid);
+
+				if (!ischecking) {
+					Check();
+				}
+			}
+
+			function Report() {
+				if (ischecking) {
+					document.querySelector("#report").textContent =
+						"checking: [" + checking + "], " + checkarray;
+				}
+			}
+
+			function ProperCheck(vid = 0) {
+				videoID = document.getElementById("videoIDInput" + vid).value;
+				// checkplayer.loadVideoById(videoID);
+				document.querySelector("#inputName" + vid).value = "<checking>";
+				// videoTitle = "";
+
+				$.get(
+					"https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" +
+						videoID +
+						"&key=" +
+						ytApiKey,
+					function (data) {
+						// alert(data.items[0].snippet.title);
+						videoTitle = data.items[0].snippet.title;
+						document.querySelector("#inputName" + vid).value = videoTitle;
+					},
+				);
+
+				GetDuration(vid);
+
+				// setTimeout(() => {
+				// document.querySelector("#inputName" + vid).value =
+				//   checkplayer.getVideoData().title;
+
+				// checkplayer.stopVideo();
+				// }, interval - 50);
+			}
+
+			function GetDuration(vid = 0) {
+				document.querySelector("#durationMarker" + vid).textContent = "...";
+
+				$.get(
+					"https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=" +
+						videoID +
+						"&key=" +
+						ytApiKey,
+					function (data) {
+						videoDuration = data.items[0].contentDetails.duration;
+
+						videoDuration = videoDuration.replaceAll("PT", "");
+						hindex = videoDuration.indexOf("H");
+						mindex = videoDuration.indexOf("M");
+						sindex = videoDuration.indexOf("S");
+						stime = 0;
+						mtime = 0;
+						htime = 0;
+
+						if (sindex > 0) {
+							stime = videoDuration.substring(
+								Math.max(hindex, mindex) + 1,
+								sindex,
+							);
+							// videoDuration = videoDuration.replaceAll(stime + "S", "");
+						}
+						if (mindex > 0) {
+							mtime = videoDuration.substring(Math.max(hindex) + 1, mindex);
+							// videoDuration = videoDuration.replaceAll(mtime + "M", "");
+						}
+						if (hindex > 0) {
+							htime = videoDuration.substring(0, hindex);
+							// videoDuration = videoDuration.replaceAll(htime + "H", "");
+						}
+
+						document.querySelector("#durationMarker" + vid).textContent =
+							htime + ":" + LeadingZero(mtime) + ":" + LeadingZero(stime);
+					},
+				);
+			}
+
+			function LeadingZero(number = "") {
+				if (number.length == 2) {
+					return number;
+				}
+				if (number.length == 1) {
+					return "0" + number;
+				}
+				if (number.length == 0) {
+					return "00";
+				}
+				return "00";
+			}
+
+			function SetText() {
+				settext = document.getElementById("settext").value;
+				document.querySelector("#settextt").textContent = settext;
+			}
+
+			function Save(overwrite = false) {
+				CheckVideoLinks();
+				SetTitle();
+
+				const urlParams = new URLSearchParams(window.location.search);
+
+				oldtime = 0;
+				if (urlParams.has("time")) {
+					oldtime = parseInt(urlParams.get("time"));
+				}
+
+				tttttime = Math.trunc(player.getCurrentTime());
+				if (Number.isNaN(tttttime)) {
+					currenttime = oldtime;
+					console.log("not a number");
+				} else if (tttttime == null) {
+					currenttime = oldtime;
+					console.log("null");
+				} else {
+					currenttime = tttttime;
+					// currenttime = "im a frog";
+				}
+
+				querystring = "?";
+				querystring += "apikey=" + ytApiKey + "&";
+				querystring += "startcount=" + count + "&";
+				querystring += "nowplaying=" + currentVideo + "&";
+				querystring += "time=" + currenttime + "&";
+
+				if (clockActive) {
+					querystring += "clock=true" + "&";
+					querystring += "endh=" + nextSegHr + "&";
+					querystring += "endm=" + nextSegMins + "&";
+				}
+
+				playlisttitle = document.getElementById("playlisttitle").value;
+				if (playlisttitle != "") {
+					querystring += "playlist=" + encodeURIComponent(playlisttitle) + "&";
+				}
+
+				if (loop) {
+					querystring += "loop=true" + "&";
+				}
+
+				if (mirror) {
+					querystring += "mirror=true" + "&";
+				}
+
+				for (let i = 0; i < count; i++) {
+					j = i;
+
+					if (document.getElementById("videoIDInput" + j).value != "") {
+						querystring +=
+							"in" +
+							j +
+							"=" +
+							document.getElementById("videoIDInput" + j).value +
+							"&";
+					}
+				}
+
+				for (let i = 0; i < count; i++) {
+					j = i;
+
+					if (document.getElementById("videoIDInput" + j).value != "") {
+						if (
+							document.getElementById("inputName" + j).value != "..." &&
+							document.getElementById("inputName" + j).value !=
+								"<checking>" &&
+							document.getElementById("inputName" + j).value != ""
+						) {
+							querystring +=
+								"intitle" +
+								j +
+								"=" +
+								encodeURIComponent(
+									document.getElementById("inputName" + j).value,
+								) +
+								"&";
+						}
+					}
+				}
+
+				// querystring += "interval=" + interval + "&";
+
+				var currenttime = 0;
+
+				// document.querySelector("#inputName3").value = urlParams;
+				// document.querySelector("#inputName4").value = querystring.slice(1, -1);
+				if (querystring.slice(1, -1) == urlParams) {
+					return;
+				}
+
+				if (overwrite) {
+					window.history.replaceState(null, null, querystring);
+				} else {
+					window.history.pushState(null, null, querystring);
+				}
+			}
+
+			window.addEventListener("popstate", function (event) {
+				Load();
+			});
+
+			startxtime = 0;
+			function Load() {
+				const urlParams = new URLSearchParams(window.location.search);
+
+				$("div").remove(".ofc");
+
+				count = 0;
+				last = count - 1;
+
+				if (urlParams.has("apikey") == true) {
+					ytApiKey = urlParams.get("apikey");
+				}
+
+				console.log("ytApiKey" + ytApiKey);
+
+				if (urlParams.has("startcount") == true) {
+					startcount = urlParams.get("startcount");
+					InitInputs(startcount);
+				} else {
+					InitInputs();
+				}
+
+				if (urlParams.has("clock") == true) {
+					clockActive = urlParams.get("clock");
+					nextSegHr = parseInt(urlParams.get("endh"));
+					nextSegMins = parseInt(urlParams.get("endm"));
+					Clock();
+				}
+
+				if (urlParams.has("nowplaying") == true) {
+					currentVideo = parseInt(urlParams.get("nowplaying"));
+				}
+				if (urlParams.has("loop") == true) {
+					loop = urlParams.get("loop");
+					LoopToggle(true, loop);
+				}
+				if (urlParams.has("mirror") == true) {
+					mirror = urlParams.get("mirror");
+					MirrorToggle(true, loop);
+				}
+
+				if (urlParams.has("time") == true) {
+					startxtime = parseInt(urlParams.get("time"));
+				}
+
+				// if (urlParams.has("interval") == true) {
+				//   interval = urlParams.get("interval");
+				// }
+				// document.getElementById("interval").value = interval;
+
+				if (urlParams.has("playlist") == true) {
+					playlisttitle = urlParams.get("playlist");
+					document.getElementById("playlisttitle").value = playlisttitle;
+				}
+
+				if (urlParams.has("in0") == true) {
+					for (let i = 0; i < count; i++) {
+						j = i;
+						document.getElementById("videoIDInput" + j).value = urlParams.get(
+							"in" + j,
+						);
+						document.getElementById("inputName" + j).value = urlParams.get(
+							"intitle" + j,
+						);
+
+						document.getElementById("inputName" + j).value = document
+							.getElementById("inputName" + j)
+							.value.replaceAll("^and^", "&")
+							.replaceAll("^percent^", "%")
+							.replaceAll("^hash^", "#");
+					}
+				}
+
+				FirstStartTimeout();
+			}
+
+			function FirstStartTimeout() {
+				setTimeout(() => {
+					if (playerready) {
+						dontplay = true;
+						StartVideo(currentVideo, false, startxtime);
+						RestartCheck();
+					} else {
+						FirstStartTimeout();
+					}
+				}, 100);
+			}
+
+			function InitInputs(sc = 3) {
+				for (let i = 0; i < sc; i++) {
+					j = i;
+					Add();
+				}
+			}
+			function LoadTime() {
+				$(".ibutton2").blur();
+
+				player.seekTo(startxtime);
+
+				const urlParams = new URLSearchParams(window.location.search);
+
+				if (urlParams.has("time") == true) {
+					startxtime = parseInt(urlParams.get("time"));
+				}
+			}
+		</script>
+	</body>
 </html>
